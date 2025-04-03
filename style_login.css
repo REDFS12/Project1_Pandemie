@@ -1,0 +1,145 @@
+body{
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    background-image: url(/images/pandemie-logo-background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+header {
+    display: flex;
+    
+    width: 21.5%;
+    display: inline-flex;
+
+    
+}
+nav{
+    color: aquamarine;
+    font-size: 18px;
+    
+    
+}
+nav a{
+    color: aquamarine;
+}
+
+ul{
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding-left: 0px;
+
+
+}
+li{
+    display: flex;
+    margin: 10px;
+}
+
+li a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+}
+li:hover{
+
+    text-decoration: underline;
+}
+
+.login-title{
+    color: aquamarine;
+    background-color: grey;
+    width: 39.5%;
+    padding: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    
+    
+}
+.login-container{
+    width: 50%;
+    justify-content: center;
+    border-radius: 5px;
+    
+}
+.login-options a{
+    color: rgb(247, 244, 244);
+    margin-right: 50px;
+
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 42.5%;
+    border: black solid 1px;
+    background-color: grey;
+
+}
+input {
+    border: 2px solid gray;
+    padding: 8px;
+    transition: border 0.2s ease-in-out; 
+}
+
+input:hover {
+    border: 5px solid black; 
+}
+
+button{
+    border: 2px solid gray;
+    background-color: white;
+    padding: 10px 20px;
+    transition: border 0.2s ease-in-out; 
+}
+button:hover{
+    border: 5px solid black
+}
+
+.register, .forgot {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.register:hover, .forgot:hover {
+    text-decoration: underline;
+}
+
+.role {
+    background-color: whitesmoke;
+    color: black;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    
+    border: 1px solid gray;
+    transition: border 0.2s ease-in-out;
+    width: 40%;
+    display: flex;
+    margin-right: 10px;
+
+}
+.user-role{
+    margin-left: 5px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    font-size: 14px;
+}
+.user-role:hover{
+    border: 1px solid black;
+
+}
+.option-role:hover{
+    border: 1px solid black;
+
+
+}
+
+
