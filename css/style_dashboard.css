@@ -1,0 +1,172 @@
+body{
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    background-image: url(/images/pandemie-logo-background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+/* begin header */
+
+header {
+    display: flex;
+    width: 100%;
+ 
+}
+
+nav{
+    color: aquamarine;
+    font-size: 18px;
+    
+}
+nav a{
+    color: aquamarine;
+}
+
+
+.nav-list{
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding-left: 0px;
+    width: 100%;
+    font-size: 18px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.nav-list li{
+    display: flex;
+    margin: 10px;
+}
+
+.nav-list li a {
+    padding: 5px;
+    text-decoration: none;
+}
+.nav-list li:hover{
+
+    text-decoration: underline;
+}
+
+.login-title{
+    color: aquamarine;
+    background-color: grey;
+    width: 100%;
+    margin: 0px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+   
+    
+}
+.login-container{
+    width: 100%;
+    margin-left: 500px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-top: 30px;
+    
+}
+.login-options a{
+    color: rgb(247, 244, 244);
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: black solid 1px;
+    background-color: grey;
+    
+
+}
+input {
+    border: 2px solid gray;
+    padding: 8px;
+    transition: border 0.2s ease-in-out; 
+}
+
+input:hover {
+    border: 5px solid black; 
+}
+
+button{
+    border: 2px solid gray;
+    background-color: white;
+    padding: 10px 20px;
+    transition: border 0.2s ease-in-out; 
+}
+button:hover{
+    border: 5px solid black
+}
+
+.register, .forgot {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.register:hover, .forgot:hover {
+    text-decoration: underline;
+}
+
+.role {
+    background-color: whitesmoke;
+    color: black;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 8px 0px 8px 0px;  
+    border: 1px solid gray;
+    transition: border 0.2s ease-in-out;
+    width: 100%;
+    display: flex;
+
+}
+.title-role{
+    margin-left: 8px;
+
+}
+.user-role{
+    margin-left: 5px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    font-size: 14px;
+}
+.user-role:hover{
+    border: 1px solid black;
+
+}
+.option-role:hover{
+    border: 1px solid black;
+
+
+}
+
+/* einde header */
+main{
+    margin-left: 10px;
+}
+main h2{
+    color: whitesmoke;
+}
+.main-list li {
+    color: whitesmoke;
+    margin-top: 10px;
+    
+}
+
+.main-list ul{
+    text-decoration: none;
+    list-style: none;
+}
+
