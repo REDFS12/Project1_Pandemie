@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Belgian Pandemic Monitor</title>
-    <link rel="stylesheet" href="/css/style_login.css">
+    <link rel="stylesheet" href="/css/style_dashboard.css">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
@@ -12,30 +12,27 @@
 
     <header class="nav">
         <nav>
-            <ul>
-                <li><a href="home">Home</a></li>
+            <ul class="nav-list">
+                <li><a href="/html/dashboard.html">Home</a></li>
                 <li><a href="About">About</a></li>
                 <li><a href="Statistics">Statistics</a></li>
                 <li><a href="Resources">Resources</a></li>
             </ul>
         </nav>
-    </header>
 
     <div class="login-container">
         <h2 class="login-title">Login</h2>
         
         <div class="role"> 
-            <label for="role">Select Role:</label><br>
+            <label class="title-role" for="role">Select Role:</label><br>
             <select id="user-role" class="user-role" required>
                 <option value="dokter">Dokter</option>
+                <!-- <option value="algemene_populatie">Populatie</option> -->
             </select>
         </div>
         <form id="login-form">
             <input type="email" id="login-email" placeholder="E-mail" required>
             <input type="password" id="login-password" placeholder="Password" required>
-
-       
-
             <button type="submit">Login</button>
         </form>
 
@@ -44,9 +41,20 @@
             <a href="/html/forgot_password.html" class="forgot">Forgot password?</a>
         </div>
     </div>
+</header>
+
+<main>
+    <h2>Important information:</h2>
+    <ul class="main-list">
+        <li>Total cases:</li>
+        <li>Recovered cases:</li>
+        <li>Death cases</li>
+        <li>Active cases</li>
+    </ul>
+</main>
 
     
-    <script src="/javascript/login.js" type="module"></script>
+    <script src="/javascript/dashboard.js" type="module"></script>
 
 </body>
 </html>

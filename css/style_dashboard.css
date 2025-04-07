@@ -7,44 +7,42 @@ body{
     background-size: 100%;
 }
 
+/* begin header */
+
 header {
     display: flex;
-    
-    width: 21.5%;
-    display: inline-flex;
-
-    
+    width: 100%;
+ 
 }
+
 nav{
     color: aquamarine;
     font-size: 18px;
-    
     
 }
 nav a{
     color: aquamarine;
 }
 
-ul{
+
+.nav-list{
     list-style: none;
     text-decoration: none;
     display: flex;
     justify-content: center;
     padding-left: 0px;
 
-
 }
-li{
+.nav-list li{
     display: flex;
     margin: 10px;
 }
 
-li a {
-    display: block;
+.nav-list li a {
     padding: 5px;
     text-decoration: none;
 }
-li:hover{
+.nav-list li:hover{
 
     text-decoration: underline;
 }
@@ -52,23 +50,29 @@ li:hover{
 .login-title{
     color: aquamarine;
     background-color: grey;
-    width: 39.5%;
-    padding: 10px;
-    margin-bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    padding-bottom: 8px;
+    padding-top: 8px;
     display: flex;
     justify-content: center;
-    
+    border-radius: 5px;
+   
     
 }
 .login-container{
-    width: 50%;
-    justify-content: center;
+    width: 100%;
+    margin-left: 500px;
     border-radius: 5px;
+    margin-right: 20px;
+    margin-top: 30px;
     
 }
 .login-options a{
     color: rgb(247, 244, 244);
-    margin-right: 50px;
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
 
 }
 
@@ -76,9 +80,10 @@ li:hover{
 form{
     display: flex;
     flex-direction: column;
-    width: 42.5%;
+    width: 100%;
     border: black solid 1px;
     background-color: grey;
+    
 
 }
 input {
@@ -114,15 +119,17 @@ button:hover{
 .role {
     background-color: whitesmoke;
     color: black;
-    padding: 8px;
     font-size: 14px;
     border-radius: 4px;
-    
+    padding: 8px 0px 8px 0px;  
     border: 1px solid gray;
     transition: border 0.2s ease-in-out;
-    width: 40%;
+    width: 100%;
     display: flex;
-    margin-right: 10px;
+
+}
+.title-role{
+    margin-left: 8px;
 
 }
 .user-role{
@@ -142,4 +149,18 @@ button:hover{
 
 }
 
+/* einde header */
+
+main h2{
+    color: whitesmoke;
+}
+.main-list li {
+    color: whitesmoke;
+    
+}
+
+.main-list ul{
+    text-decoration: none;
+    list-style: none;
+}
 

@@ -24,14 +24,21 @@ registerForm.addEventListener('submit', async (e) => {
         console.log('User registered:', user);
 
         // Voeg gebruiker toe aan Firestore database
+       if(rol === "algemene_populatie"){
         await setDoc(doc(db, "gebruikers", user.uid), {
             uid: user.uid,
             email: email,
-            rol: rol
-        });
+            rol: "algemene_populatie"
+        }); } else {
+            await setDoc(doc(db, "dokter", user.uid), {
+                uid: user.uid,
+                email: email,
+                rol: "dokter"
+        })
+};
 
         // Redirect op basis van rol
-        window.location.href = rol === "dokter" ? '/html/dokter_dashboard.html' : '/html/login.html';
+        window.location.href = rol === "dokter" ? '/html/dokter_dashboard.html' : '/html/user_dashboard.html';
 
     } catch (error) {
         if (error.code === 'auth/email-already-in-use') {

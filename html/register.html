@@ -13,24 +13,25 @@
         
         
 
-        <div class="register-role">
-           <label for="role" class="select-role">Select Role:</label><br>
-            <select class="selected-role" id="role" required>
-                <option value="algemene_populatie">Gebruiker</option>
+        <div class="role"> 
+            <label for="role">Select Role:</label><br>
+            <select id="user-role" class="user-role" required>
                 <option value="dokter">Dokter</option>
+                <!-- <option value="algemene_populatie">Populatie</option> -->
             </select>
         </div>
+
         <form id="register-form">
             <input type="email" id="email" placeholder="Enter your E-mail" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Sign in</button>
         </form>
         <div class="link-back">
-            <a href="/html/login.html">Back to Login</a>
+            <a href="/html/dashboard.html">Back to Login</a>
         </div>
     </div>
     
     
-    <script src="/javascript/registratie.js" type="module"></script>
+    <script src="/javascript/register.js" type="module"></script>
 </body>
 </html>
