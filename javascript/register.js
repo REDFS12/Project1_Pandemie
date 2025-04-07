@@ -1,12 +1,12 @@
 import { auth, db } from './firebaseConfig.js';  
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
-import { collection, addDoc, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+import { setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 // Verkrijg formulier en velden
 const registerForm = document.getElementById('register-form');
 const emailField = document.getElementById('email');
 const passwordField = document.getElementById('password');
-const roleSelect = document.getElementById('role'); // Haal de select op
+const roleSelect = document.getElementById('user-role'); // Haal de select op
 
 // Verwerk registratie
 registerForm.addEventListener('submit', async (e) => {
@@ -16,35 +16,43 @@ registerForm.addEventListener('submit', async (e) => {
     const password = passwordField.value;
     const rol = roleSelect.value; // Haal de gekozen rol op
 
-    console.log("Geselecteerde rol:", rol); // Debugging om te zien of de juiste rol wordt opgehaald
+    console.log("Geselecteerde rol:", rol); // Debugging
 
     try {
+        // Maak nieuwe gebruiker aan via Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        console.log('User registered:', user);
 
-        // Voeg gebruiker toe aan Firestore database
-       if(rol === "algemene_populatie"){
-        await setDoc(doc(db, "gebruikers", user.uid), {
+        // Wacht tot Firebase de user herkent (zodat request.auth werkt in Firestore)
+        await new Promise(resolve => {
+            const unsubscribe = auth.onAuthStateChanged((user) => {
+                if (user) {
+                    unsubscribe();
+                    resolve();
+                }
+            });
+        });
+
+        const user = auth.currentUser;
+        console.log('User is ingelogd en herkend:', user);
+
+        // Schrijf naar juiste Firestore collectie
+        const collectionName = rol === "dokter" ? "dokters" : "gebruikers";
+        await setDoc(doc(db, collectionName, user.uid), {
             uid: user.uid,
             email: email,
-            rol: "algemene_populatie"
-        }); } else {
-            await setDoc(doc(db, "dokter", user.uid), {
-                uid: user.uid,
-                email: email,
-                rol: "dokter"
-        })
-};
+            rol: rol
+        });
 
-        // Redirect op basis van rol
-        window.location.href = rol === "dokter" ? '/html/dokter_dashboard.html' : '/html/user_dashboard.html';
+        // Verzend je naar link op basis van rol
+        window.location.href = rol === "dokter"
+            ? '/html/doctor_dashboard.html'
+            : '/html/dashboard.html';
 
     } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
             alert('Dit e-mailadres is al geregistreerd. Probeer in te loggen of gebruik een ander e-mailadres.');
         } else {
-            console.error('Error during registration:', error.code, error.message);
+            console.error('Error tijdens registratie:', error.code, error.message);
             alert('Fout: ' + error.message);
         }
     }

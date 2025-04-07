@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style_login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2 class="login-title">Login</h2>
+        
+        <div class="role"> 
+            <label class="title-role" for="role">Select Role:</label><br>
+            <select id="user-role" class="user-role" required>
+                <option value="dokter">Dokter</option>
+                <option value="gebruikers">Gebruiker</option>
+            </select>
+        </div>
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="E-mail" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="login-options">
+            <a href="/html/register.html" class="register">Create an account</a>
+            <a href="/html/forgot_password.html" class="forgot">Forgot password?</a>
+        </div>
+    </div>
+    <script src="/javascript/dashboard.js" type="module"></script>    
+</body>
+
+</html>
