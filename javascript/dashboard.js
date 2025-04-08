@@ -6,12 +6,12 @@ const loginForm = document.getElementById('login-form');
 const loginEmailField = document.getElementById('login-email');
 const loginPasswordField = document.getElementById('login-password');
 
-// Verkrijg geselecteerde rol
+
 const getSelectedRole = () => {
     const roleElements = document.getElementsByName('role');
     for (let element of roleElements) {
         if (element.checked) {
-            return element.value;  // Retourneert de geselecteerde rol (dokter of algemene_populatie)
+            return element.value;  // Retourneert de geselecteerde rol (dokter of gebruikers)
         }
     }
     return null;
@@ -19,7 +19,7 @@ const getSelectedRole = () => {
 
 // Verwerk inlogformulier
 loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();  // Voorkom de standaard formulieractie
+    e.preventDefault();  
 
     const email = loginEmailField.value;
     const password = loginPasswordField.value;
@@ -46,7 +46,7 @@ loginForm.addEventListener('submit', async (e) => {
 
             // Controleer of de geselecteerde rol overeenkomt met de rol in Firestore
             if (role === userRole) {
-                // Redirect op basis van rol
+            
                 window.location.href = role === "dokter" ? '/html/doctor_dashboard.html' : '/html/user_dashboard.html';
             } else {
                 alert('De geselecteerde rol komt niet overeen met de gegevens in onze database.');
