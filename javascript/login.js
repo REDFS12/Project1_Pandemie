@@ -6,24 +6,11 @@ const loginForm = document.getElementById('login-form');
 const loginEmailField = document.getElementById('login-email');
 const loginPasswordField = document.getElementById('login-password');
 
-
-const getSelectedRole = () => {
-    const roleElements = document.getElementsByName('role');
-    for (let element of roleElements) {
-        if (element.checked) {
-            return element.value;  // Retourneert de geselecteerde rol (dokter of gebruikers)
-        }
-    }
-    return null;
-};
-
-// Verwerk inlogformulier
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();  
 
     const email = loginEmailField.value;
     const password = loginPasswordField.value;
-    const role = getSelectedRole();  // Haal de geselecteerde rol op
 
     try {
         // Login met Firebase Authentication
@@ -32,11 +19,9 @@ loginForm.addEventListener('submit', async (e) => {
 
         console.log('User logged in:', user);
 
-        // Verkrijg de rol van de gebruiker uit de Firestore-database
-        const collectionName = role === "dokter" ? "dokters" : "gebruikers";
-        const docRef = doc(db, collectionName, user.uid);
+        // Verkrijg het gebruikersdocument uit Firestore op basis van de UID
+        const docRef = doc(db, "dokters", user.uid);  // Zorg dat je zoekt in de juiste collectie ("dokters")
         const docSnap = await getDoc(docRef);
-
 
         if (docSnap.exists()) {
             const userData = docSnap.data();
@@ -44,16 +29,14 @@ loginForm.addEventListener('submit', async (e) => {
 
             console.log('User role from Firestore:', userRole);
 
-            // Controleer of de geselecteerde rol overeenkomt met de rol in Firestore
-            if (role === userRole) {
-            
-                window.location.href = role === "dokter" ? '/html/doctor_dashboard.html' : '/html/user_dashboard.html';
+            // Redirect naar dashboard op basis van de rol in Firestore
+            if (userRole === "dokter") {
+                window.location.href = '/html/doctor_dashboard.html';
+            } else if (userRole === "gebruikers") {
+                window.location.href = '/html/user_dashboard.html';
             } else {
-                alert('De geselecteerde rol komt niet overeen met de gegevens in onze database.');
+                alert('Onbekende rol in Firestore.');
             }
-        } else {
-            console.error('Geen gebruikersdocument gevonden in Firestore');
-            alert('Geen gebruikersgegevens gevonden voor deze rol.');
         }
 
     } catch (error) {

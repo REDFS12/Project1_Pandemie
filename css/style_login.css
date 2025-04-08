@@ -65,13 +65,13 @@ button:hover{
     border: 5px solid black
 }
 
-.register, .forgot {
+.register, .forgot, .back-home {
     text-decoration: none;
     color: black;
     transition: 0.3s ease-in-out;
 }
 
-.register:hover, .forgot:hover {
+.register:hover, .forgot:hover, .back-home:hover {
     text-decoration: underline;
 }
 
