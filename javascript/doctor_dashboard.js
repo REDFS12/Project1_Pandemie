@@ -18,7 +18,7 @@ form.addEventListener('submit', async (e) => {
     try {
         const user = auth.currentUser;
 
-        await addDoc(collection(db, "besmettingen"), {
+        await addDoc(collection(db, "Variabelen-geinfecteerden"), {
             regio,
             leeftijd,
             geslacht,
@@ -26,12 +26,10 @@ form.addEventListener('submit', async (e) => {
             datum,
             gevaarlijk,
             dokterId: user.uid,
-            // timestamp: new Date()
         });
 
         form.reset();
     } catch (err) {
         console.error("Fout bij opslaan:", err);
-        feedback.innerText = "Er is iets misgegaan bij het opslaan.";
     }
 });
