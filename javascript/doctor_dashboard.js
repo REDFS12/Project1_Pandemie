@@ -1,5 +1,6 @@
 import { db, auth } from './firebaseConfig.js';
 import { collection, addDoc, getDocs} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+import { getTotalCases } from './import.js';
 
 const form = document.getElementById('besmetting-form');
 
@@ -24,7 +25,7 @@ form.addEventListener('submit', async (e) => {
             virusType,
             datum,
             gevaarlijk,
-            dokterId: user.uid,
+            dokterId: user.email,
         });
 
         form.reset();
@@ -33,17 +34,10 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// telt op hoeveel formulier werd ingevuld en kan dan weten hoeveel zieken(cases) er zijn.
-async function getTotalCases() {
-    try {
-        const besmettingenBenaming = collection(db, "Variabelen-geinfecteerden"); 
-        const snapshot = await getDocs(besmettingenBenaming);
-        const totaal = snapshot.size;
-
-        document.getElementById("total_cases").innerText = totaal;
-    } catch (err) {
-        document.getElementById("total_cases").innerText = "Iets misgegaan";
+// haalt de functie van import.js voor medlingen op te tellen
+getTotalCases().then(totaal => {
+    const totalCasesView = document.getElementById("total_cases");
+    if (totalCasesView) {
+      totalCasesView.innerText = totaal;
     }
-}
-
-getTotalCases();
+  });
