@@ -25,7 +25,7 @@ form.addEventListener('submit', async (e) => {
             virusType,
             datum,
             gevaarlijk,
-            dokterId: user.uid,
+            dokterId: user.email,
         });
 
         form.reset();
@@ -34,7 +34,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// telt op hoeveel formulier werd ingevuld en kan dan weten hoeveel zieken(cases) er zijn.
+// haalt de functie van import.js voor medlingen op te tellen
 getTotalCases().then(totaal => {
     const totalCasesView = document.getElementById("total_cases");
     if (totalCasesView) {
