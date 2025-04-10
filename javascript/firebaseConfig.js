@@ -1,10 +1,9 @@
-// firebaseConfig.js
+
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";;
 
-// Firebase-configuratie
+
 const firebaseConfig = {
     apiKey: "AIzaSyDleTLn1fyEZUvv08_40fwr-EMn_2xoi-o",
     authDomain: "project-pandemie.firebaseapp.com",
@@ -15,10 +14,10 @@ const firebaseConfig = {
     measurementId: "G-99H8JZ6Z84"
   };
 
-// Initialiseer Firebase één keer en exporteer
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-// const analytics = getAnalytics(app);
+
 
 export { auth, db };

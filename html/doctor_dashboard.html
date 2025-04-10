@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
-    <link rel="stylesheet" href="/css/style_dashboard.css">
+    <link rel="stylesheet" href="/css/style_doctor_dashboard.css">
 </head>
 <body>
 
@@ -21,17 +21,62 @@
     </header>
 
 <main>
+<section class="information">
     <h2>Important information:</h2>
     <ul class="main-list">
-        <li>Total cases:</li>
-        <li>Recovered cases:</li>
-        <li>Death cases</li>
-        <li>Active cases</li>
+        <li>Total cases: <span id="total_cases"></span></li>
+        <li>Recovered cases: <span id="recovered_cases"></span></li>
+        <li>Death cases: <span id="death_cases"></span></li> 
+        <li>Active cases: <span id="active_cases"></span></li>  
     </ul>
+</section>
+
+    <hr>
+<section class="meldingen">
+
+    <h2>Nieuwe besmetting melden:</h2>
+    <form id="besmetting-form">
+        <label>Regio:
+            <input type="text" id="regio" required>
+        </label><br>
+
+        <label>Leeftijd:
+            <input type="number" id="leeftijd" required>
+        </label><br>
+
+        <label>Geslacht:
+            <select id="geslacht">
+                <option value="man">Man</option>
+                <option value="vrouw">Vrouw</option>
+            </select>
+        </label><br>
+
+        <label>Type Virus:
+            <input type="text" id="virus" required> 
+
+        </label><br>
+
+        <label>Datum besmetting:
+            <input type="date" id="datum" required>
+        </label><br>
+        
+        <label>Gevaarlijk:
+            <select id="gevaarlijk">
+                <option value="ja">Ja</option>
+                <option value="neen">Nee</option>
+            </select>
+        </label> <br>
+
+        <button type="submit">Opslaan</button>
+        
+<!-- Extra info hier bijvoegen!!  -->
+
+    </form>
+</section>
 </main>
 
     
-    <script src="/javascript/dashboard.js" type="module"></script>
+    <script src="/javascript/doctor_dashboard.js" type="module"></script>
 
 </body>
 
