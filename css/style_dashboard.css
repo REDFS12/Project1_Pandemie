@@ -162,11 +162,8 @@ main h2{
 .main-list li {
     color: whitesmoke;
     margin-top: 10px;
+    font-size: 20px;
     
 }
 
-.main-list ul{
-    text-decoration: none;
-    list-style: none;
-}
 

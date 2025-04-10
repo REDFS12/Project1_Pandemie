@@ -72,7 +72,8 @@ main h2{
 .main-list li {
     color: whitesmoke;
     margin-top: 10px;
-    text-decoration: underline;
+    font-size: 20px;
+    color: white;
     
 }
 
@@ -114,5 +115,11 @@ main h2{
     padding: 3px;
     font-size: 15px;
     width: 100px;
+}
+#total_cases{
+    text-decoration: none;
+    font-size: 20px;
+    
+    
 }
 

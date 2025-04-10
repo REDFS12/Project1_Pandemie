@@ -1,10 +1,9 @@
 import { db, auth } from './firebaseConfig.js';
-import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import { collection, addDoc, getDocs} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 const form = document.getElementById('besmetting-form');
 
-// Verwerk het formulier
+// maakt het formulier voor in database te saven
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -33,3 +32,18 @@ form.addEventListener('submit', async (e) => {
         console.error("Fout bij opslaan:", err);
     }
 });
+
+// telt op hoeveel formulier werd ingevuld en kan dan weten hoeveel zieken(cases) er zijn.
+async function getTotalCases() {
+    try {
+        const besmettingenBenaming = collection(db, "Variabelen-geinfecteerden"); 
+        const snapshot = await getDocs(besmettingenBenaming);
+        const totaal = snapshot.size;
+
+        document.getElementById("total_cases").innerText = totaal;
+    } catch (err) {
+        document.getElementById("total_cases").innerText = "Iets misgegaan";
+    }
+}
+
+getTotalCases();
