@@ -54,14 +54,14 @@ Database_firebase/ │ ├── css/ # All custom CSS files for styling differe
 git clone https://github.com/your-username/pandemic-monitoring-app.git
 cd Database_firebase
 
-2. Setup Firebase
+### 2. Setup Firebase
 Create a Firebase project at console.firebase.google.com.
 Replace Firebase config in javascript/firebaseConfig.js with your credentials.
 
-3. Serve Locally
+### 3. Serve Locally
 Use any static server tool like Live Server
 
-🤝 Contributing
+### 🤝 Contributing
 
 Feel free to fork the repo and submit a pull request. Bug reports and feature ideas are welcome!
 
