@@ -19,12 +19,16 @@ form.addEventListener('submit', async (e) => {
         const user = auth.currentUser;
 
         await addDoc(collection(db, "Variabelen-geinfecteerden"), {
-            regio,
             leeftijd,
+            woonLocatie,
             geslacht,
             virusType,
-            datum,
-            gevaarlijk,
+            datumBesmetting,
+            werkLocatie,
+            gezinGrootte,
+            statusVaccinatie,
+            ingaveDatum,
+            GenezingDatum,
             dokterId: user.email,
         });
 
