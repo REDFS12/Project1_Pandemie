@@ -1,2 +1,2 @@
-# Progarmming-Project-Pandemie
+# Programming-Project-Pandemie
  
