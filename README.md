@@ -2,6 +2,8 @@
 
 A responsive web-based application built to monitor and visualize pandemic statistics across different regions in a country. The project includes real-time data management using Firebase and is structured to accommodate both general users and medical personnel (doctor dashboard).
 
+Canva-link: https://www.canva.com/design/DAGknpwriq0/CG36IOqOiulUcKYA7oo5dg/edit?utm_content=DAGknpwriq0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 ![Pandemic App Logo](./images/pandemie-logo-background.jpg)
 
 ---
