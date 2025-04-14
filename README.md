@@ -49,8 +49,6 @@ Database_firebase/ │ ├── css/ # All custom CSS files for styling differe
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
-
-```bash
 git clone https://github.com/your-username/pandemic-monitoring-app.git
 cd Database_firebase
 
@@ -61,8 +59,8 @@ Replace Firebase config in javascript/firebaseConfig.js with your credentials.
 ### 3. Serve Locally
 Use any static server tool like Live Server
 
-### 🤝 Contributing
+### 4. 🤝 Contributing
 
-Feel free to fork the repo and submit a pull request. Bug reports and feature ideas are welcome!
+Feel free to submit a pull request. Bug reports and feature ideas are welcome!
 
-Developed by Nabil1030 & REDFS12
+Developed by Nabil-1030 & REDFS12
