@@ -8,23 +8,33 @@ const form = document.getElementById('besmetting-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const regio = document.getElementById('regio').value;
+    const woonLocatie = document.getElementById('woonLocatie').value;
+    const werkLocatie = document.getElementById('werkLocatie').value;
     const leeftijd = parseInt(document.getElementById('leeftijd').value);
+    const gezinGrootte = parseInt(document.getElementById('gezinGrootte').value);
     const geslacht = document.getElementById('geslacht').value;
-    const virusType = document.getElementById('virus').value;
-    const datum = document.getElementById('datum').value;
-    const gevaarlijk = document.getElementById('gevaarlijk').value;
+    const virusType = document.getElementById('virusType').value;
+    const datumBesmetting = document.getElementById('datumBesmetting').value;
+    const ingaveDatum = document.getElementById('ingaveDatum').value;
+    const genezingDatum = document.getElementById('genezingDatum').value;
+    const statusVaccinatie = document.getElementById('statusVaccinatie').value;
+
 
     try {
         const user = auth.currentUser;
 
         await addDoc(collection(db, "Variabelen-geinfecteerden"), {
-            regio,
+    
+            woonLocatie,
+            werkLocatie,
             leeftijd,
+            gezinGrootte,
             geslacht,
             virusType,
-            datum,
-            gevaarlijk,
+            datumBesmetting,
+            ingaveDatum,
+            genezingDatum,
+            statusVaccinatie,
             dokterId: user.email,
         });
 
@@ -34,7 +44,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// haalt de functie van import.js voor medlingen op te tellen
+// haalt de functie van import.js voor meldingen op te tellen
 getTotalCases().then(totaal => {
     const totalCasesView = document.getElementById("total_cases");
     if (totalCasesView) {

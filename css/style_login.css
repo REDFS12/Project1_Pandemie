@@ -3,6 +3,47 @@ body{
     background-repeat: no-repeat;
     background-size: 100%;
 }
+header {
+    display: flex;
+    width: 100%;
+ 
+}
+
+nav{
+    color: aquamarine;
+    font-size: 18px;
+    
+}
+nav a{
+    color: aquamarine;
+}
+
+
+.nav-list{
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding-left: 0px;
+    width: 100%;
+    font-size: 18px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.nav-list li{
+    display: flex;
+    margin: 10px;
+}
+
+.nav-list li a {
+    padding: 5px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.nav-list li:hover{
+
+    text-decoration: underline;
+}
 .login-container{
     width: 40%;
     border-radius: 5px;

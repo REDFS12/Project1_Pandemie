@@ -2,16 +2,25 @@ body{
     margin: 10px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightgray;
-    background-image: url(/images/pandemie-logo-background.jpg);
+    /* background-image: url(/images/pandemie-logo-background.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100%; */
 }
 
 /* begin header */
 
+.headerSection{
+    background-image: url(/images/pandemie-logo-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
 header {
     display: flex;
     width: 100%;
+    
  
 }
 
@@ -23,7 +32,6 @@ nav{
 nav a{
     color: aquamarine;
 }
-
 
 .nav-list{
     list-style: none;
@@ -39,6 +47,7 @@ nav a{
 .nav-list li{
     display: flex;
     margin: 10px;
+    font-size: 20px;
 }
 
 .nav-list li a {
@@ -69,6 +78,11 @@ main h2{
     text-decoration: underline;
 
 }
+.main-list {
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+}
+
 .main-list li {
     color: whitesmoke;
     margin-top: 10px;
@@ -78,13 +92,13 @@ main h2{
 }
 
 .meldingen form{
-    flex-direction: column;
+    display: flex;
     color: aquamarine;
     font-size: 18px;
     border: 3px solid black;
     background-color: rgb(76, 110, 132);
     padding: 10px;
-
+    
 }
 .meldingen input{
     margin: 3px;
@@ -112,14 +126,19 @@ main h2{
 
 .meldingen button{
     margin: 5px;
-    padding: 3px;
+    padding: 5px;
     font-size: 15px;
-    width: 100px;
+    
 }
 #total_cases{
     text-decoration: none;
     font-size: 20px;
     
-    
 }
+
+#besmetting-form div{
+    margin-right: 60px;
+}
+
+
 

@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<section class="headerSection">
     <header class="nav">
         <nav>
             <ul class="nav-list">
@@ -24,11 +25,12 @@
 <section class="information">
     <h2>Important information:</h2>
     <ul class="main-list">
-        <li>Total infection cases <span id="total_cases"></span></li>
+        <li>Total infection cases:<span id="total_cases"></span></li>
         <li>Recovered cases: <span id="recovered_cases"></span></li>
         <li>Death cases: <span id="death_cases"></span></li> 
         <li>Active cases: <span id="active_cases"></span></li>  
     </ul>
+</section>
 </section>
 
     <hr>
@@ -36,12 +38,22 @@
 
     <h2>Nieuwe besmetting melden:</h2>
     <form id="besmetting-form">
-        <label>Regio:
-            <input type="text" id="regio" required>
+
+    <div class="infoPersoon">
+        <label>Woon Locatie:
+            <input type="text" id="woonLocatie" required>
+        </label><br>
+
+        <label>Werk Locatie:
+            <input type="text" id="werkLocatie" required>
         </label><br>
 
         <label>Leeftijd:
             <input type="number" id="leeftijd" required>
+        </label><br>
+
+        <label>Grootte van het gezin:
+            <input type="number" id="gezinGrootte" required>
         </label><br>
 
         <label>Geslacht:
@@ -50,27 +62,33 @@
                 <option value="vrouw">Vrouw</option>
             </select>
         </label><br>
+    </div>
 
-        <label>Type Virus:
-            <input type="text" id="virus" required> 
+    <div class="infoVirus"><label>Type Virus:
+            <input type="text" id="virusType" required> 
 
         </label><br>
 
-        <label>Datum besmetting:
-            <input type="date" id="datum" required>
-        </label><br>
-        
-        <label>Gevaarlijk:
-            <select id="gevaarlijk">
-                <option value="ja">Ja</option>
-                <option value="neen">Nee</option>
-            </select>
-        </label> <br>
+            <label>Datum besmetting:
+                <input type="date" id="datumBesmetting" required>
+            </label><br>
 
-        <button type="submit">Opslaan</button>
-        
-<!-- Extra info hier bijvoegen!!  -->
+                <label>Ingave Datum:
+                    <input type="date" id="ingaveDatum" required>
+                </label><br>
 
+            <label>Genezing Datum:
+                <input type="date" id="genezingDatum" required>
+            </label><br>
+
+            <label>Status vaccinatie:
+                <select id="statusVaccinatie" required>
+                    <option value="gevaccineerd">Gevaccineerd</option>
+                    <option value="nietGevaccineerd">Niet gevaccineerd</option>
+                </select>
+                </label>
+    </div> 
+            <button class="button" type="submit">Opslaan</button>
     </form>
 </section>
 </main>
