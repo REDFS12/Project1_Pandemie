@@ -13,8 +13,8 @@
         <nav>
             <ul class="nav-list">
                 <li><a href="/html/dashboard.html">Home</a></li>
-                <li><a href="About">About</a></li>
-                <li><a href="Statistics">Statistics</a></li>
+                <li><a href="/html/about.html">About</a></li>
+                <li><a href="/html/statistics.html">Statistics</a></li>
                 <li><a href="Resources">Resources</a></li>
                 <li><a href="/html/dashboard.html">Sign Out!</a></li>
             </ul>
@@ -25,7 +25,7 @@
 <section class="information">
     <h2>Important information:</h2>
     <ul class="main-list">
-        <li>Total infection cases:<span id="total_cases"></span></li>
+        <li>Total infection cases: <span id="total_cases"></span></li>
         <li>Recovered cases: <span id="recovered_cases"></span></li>
         <li>Death cases: <span id="death_cases"></span></li> 
         <li>Active cases: <span id="active_cases"></span></li>  
@@ -40,8 +40,12 @@
     <form id="besmetting-form">
 
     <div class="infoPersoon">
-        <label>Woon Locatie:
-            <input type="text" id="woonLocatie" required>
+        <label>Regio:
+            <select id="regio">
+                <option value="vlaams_brabant">Vlaams-Brabant</option>
+                <option value="wallonie">Wallonie</option>
+                <option value="brussel">Brussel</option>
+            </select>
         </label><br>
 
         <label>Werk Locatie:
@@ -90,6 +94,11 @@
     </div> 
             <button class="button" type="submit">Opslaan</button>
     </form>
+</section>
+
+<section>
+
+
 </section>
 </main>
 

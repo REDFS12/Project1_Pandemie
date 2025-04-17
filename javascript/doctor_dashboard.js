@@ -8,7 +8,7 @@ const form = document.getElementById('besmetting-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const woonLocatie = document.getElementById('woonLocatie').value;
+    const regio = document.getElementById('regio').value;
     const werkLocatie = document.getElementById('werkLocatie').value;
     const leeftijd = parseInt(document.getElementById('leeftijd').value);
     const gezinGrootte = parseInt(document.getElementById('gezinGrootte').value);
@@ -25,7 +25,7 @@ form.addEventListener('submit', async (e) => {
 
         await addDoc(collection(db, "Variabelen-geinfecteerden"), {
     
-            woonLocatie,
+            regio,
             werkLocatie,
             leeftijd,
             gezinGrootte,
