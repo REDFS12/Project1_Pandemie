@@ -11,3 +11,27 @@ export async function getTotalCases() {
     return "Fout";
   }
 }
+
+export async function getActiveCases() {
+    const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
+    const today = new Date();
+    let activeCount = 0;
+
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+        const genezingDatum = data.genezingDatum;
+
+        if (!genezingDatum) {
+            activeCount++;
+        } else {
+            const genezingDateObj = new Date(genezingDatum);
+            if (genezingDateObj > today) {
+                activeCount++;
+            } else{
+              activeCount--;
+            }
+        }
+    });
+
+    return activeCount;
+}

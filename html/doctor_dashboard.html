@@ -42,10 +42,11 @@
     <div class="infoPersoon">
         <label>Regio:
             <select id="regio">
-                <option value="vlaams_brabant">Vlaams-Brabant</option>
-                <option value="wallonie">Wallonie</option>
-                <option value="brussel">Brussel</option>
-            </select>
+                <option value="Brussel">Brussel</option>
+                <option value="Vlaams-Brabant">Vlaams-Brabant</option>
+                <option value="Waals-Brabant">Waals-Brabant</option>
+                <option value="Antwerpen">Antwerpen</option>
+              </select>
         </label><br>
 
         <label>Werk Locatie:
@@ -64,7 +65,7 @@
             <select id="geslacht">
                 <option value="man">Man</option>
                 <option value="vrouw">Vrouw</option>
-            </select>
+            </select required>
         </label><br>
     </div>
 
@@ -82,7 +83,7 @@
                 </label><br>
 
             <label>Genezing Datum:
-                <input type="date" id="genezingDatum" required>
+                <input type="date" id="genezingDatum">
             </label><br>
 
             <label>Status vaccinatie:
@@ -96,13 +97,13 @@
     </form>
 </section>
 
-<section>
-
-
-</section>
+<section class="chartSection">
+    <h2>Verspreiding per Regio</h2>
+    <canvas id="regioChart" width="200" height="50"></canvas>
+  </section>
 </main>
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script  type="module" src="/javascript/doctor_dashboard.js" ></script>
     <script type="module" src="/javascript/import.js"></script>
 
