@@ -1,10 +1,10 @@
 import { db, auth } from './firebaseConfig.js';
-import { collection, addDoc, getDocs} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-import { getTotalCases, getActiveCases } from './import.js';
+import { collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+import { getTotalCases, getActiveCases, getRecoveredCases } from './import.js';
 
+// Formulierverwerking
 const form = document.getElementById('besmetting-form');
 
-// maakt het formulier voor in database te saven
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -19,12 +19,10 @@ form.addEventListener('submit', async (e) => {
     const genezingDatum = document.getElementById('genezingDatum').value;
     const statusVaccinatie = document.getElementById('statusVaccinatie').value;
 
-
     try {
         const user = auth.currentUser;
 
         await addDoc(collection(db, "Variabelen-geinfecteerden"), {
-    
             regio,
             werkLocatie,
             leeftijd,
@@ -44,23 +42,24 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// haalt de functie van import.js voor meldingen op te tellen
-getTotalCases().then(totaal => {
-    const totalCasesView = document.getElementById("total_cases");
-    if (totalCasesView) {
-      totalCasesView.innerText = totaal;
-    }
-  });
-// haalt de functie van import.js voor active case als de datum 
-// van genezing nog niet bekend is en telt het open
-  getActiveCases().then(active => {
-    const activeCasesView = document.getElementById("active_cases");
-    if (activeCasesView) {
-        activeCasesView.innerText = active;
-    }
+// Statistieken bijwerken
+getTotalCases().then(total => {
+    document.getElementById("total_cases").innerText = total;
 });
 
+getActiveCases().then(active => {
+    document.getElementById("active_cases").innerText = active;
+});
+
+getRecoveredCases().then(recovered => {
+    document.getElementById("recovered_cases").innerText = recovered;
+});
+
+// Regio-grafiek
 async function drawRegioChart() {
+    let actieveGevallen = 0;
+    let hersteldeGevallen = 0;
+
     const regioTelling = {
         'Brussel': 0,
         'Vlaams-Brabant': 0,
@@ -75,8 +74,24 @@ async function drawRegioChart() {
         if (regioTelling.hasOwnProperty(regio)) {
             regioTelling[regio]++;
         }
+
+        if (!data.genezingDatum) {
+            actieveGevallen++;
+        }
+
+        if (data.genezingDatum) {
+            hersteldeGevallen++;
+        }
     });
 
+    // Toon statistieken in HTML (optioneel als je deze velden hebt)
+    const actief = document.getElementById("aantal_actieve");
+    const hersteld = document.getElementById("aantal_hersteld");
+
+    if (actief) actief.innerText = actieveGevallen;
+    if (hersteld) hersteld.innerText = hersteldeGevallen;
+
+    // Regiogebaseerde grafiek tekenen
     const ctx = document.getElementById('regioChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
