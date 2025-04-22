@@ -43,9 +43,9 @@ registerForm.addEventListener('submit', async (e) => {
         console.error("Error tijdens registratie:", error);
     
         if (error.code === 'auth/email-already-in-use') {
-            alert('❌ Dit e-mailadres is al geregistreerd. Log in of gebruik een ander e-mailadres.');
+            alert('Dit e-mailadres is al geregistreerd. Log in of gebruik een ander e-mailadres.');
         } else {
-            alert('⚠️ Fout bij registratie: ' + error.message);
+            alert('Fout bij registratie: ' + error.message);
         }
     
         // Stop verdere verwerking

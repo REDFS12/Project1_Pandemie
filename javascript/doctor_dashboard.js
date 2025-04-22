@@ -64,7 +64,6 @@ async function drawRegioChart() {
     const regioTelling = {
         'Brussel': 0,
         'Vlaams-Brabant': 0,
-        'Waals-Brabant': 0,
         'Antwerpen': 0
     };
 
@@ -86,8 +85,8 @@ async function drawRegioChart() {
           datasets: [{
             label: 'Aantal meldingen in de regio',
             data: Object.values(regioTelling),
-            backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545'],
-            borderWidth: 1
+            backgroundColor: ['black', 'orange','yellow'],
+    
           }]
         },
         options: {

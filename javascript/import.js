@@ -13,25 +13,19 @@ export async function getTotalCases() {
 }
 
 export async function getActiveCases() {
-    const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
-    const today = new Date();
-    let activeCount = 0;
+  const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
+  const today = new Date();
+  let activeCount = 0;
 
-    snapshot.forEach((doc) => {
-        const data = doc.data();
-        const genezingDatum = data.genezingDatum;
+  snapshot.forEach((doc) => {
+      const data = doc.data();
+      const genezingDatum = data.genezingDatum;
 
-        if (!genezingDatum) {
-            activeCount++;
-        } else {
-            const genezingDateObj = new Date(genezingDatum);
-            if (genezingDateObj > today) {
-                activeCount++;
-            } else{
-              activeCount--;
-            }
-        }
-    });
+      // Actief als er geen genezingDatum of datum ligt in de toekomst
+      if (!genezingDatum || new Date(genezingDatum) > today) {
+          activeCount++;
+      }
+  });
 
-    return activeCount;
+  return activeCount;
 }

@@ -1,0 +1,133 @@
+/* Algemene pagina stijl */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header / Navigation Bar */
+.nav {
+    background-color: #2c3e50;
+    padding: 15px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list li {
+    margin: 0 15px;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-list a:hover {
+    color: #3498db;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+.statistics {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.filters label {
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.filters select, .filters button {
+    padding: 8px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.filters button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.filters button:hover {
+    background-color: #2980b9;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #ecf0f1;
+}
+
+/* Grafiek */
+canvas {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Footer (optioneel, als je hem nodig hebt) */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

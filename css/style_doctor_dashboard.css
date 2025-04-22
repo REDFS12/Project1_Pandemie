@@ -1,148 +1,146 @@
-body{
-    margin: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: lightgray;
-    /* background-image: url(/images/pandemie-logo-background.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%; */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
 }
 
-/* begin header */
-
-.headerSection{
-    background-image: url(/images/pandemie-logo-background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    border: solid black 5px;
-    border-radius: 10px;
-    
+/* Navigation Bar */
+.nav {
+    background-color: #2c3e50;
+    padding: 15px 0;
 }
 
-header {
-    display: flex;
-    width: 100%;
-    
- 
-}
-
-nav{
-    color: aquamarine;
-    font-size: 18px;
-    
-}
-nav a{
-    color: aquamarine;
-}
-
-.nav-list{
+.nav-list {
     list-style: none;
-    text-decoration: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
-    padding-left: 0px;
-    width: 100%;
-    font-size: 18px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-}
-.nav-list li{
-    display: flex;
-    margin: 10px;
-    font-size: 20px;
 }
 
-.nav-list li a {
-    padding: 5px;
+.nav-list li {
+    margin: 0 15px;
+}
+
+.nav-list a {
+    color: white;
     text-decoration: none;
-}
-.nav-list li:hover{
-
-    text-decoration: underline;
+    font-size: 18px;
+    transition: color 0.3s;
 }
 
-.information input {
-    border: 2px solid gray;
-    padding: 8px;
-    transition: border 0.2s ease-in-out; 
+.nav-list a:hover {
+    color: #3498db;
 }
 
-.information input:hover {
-    border: 5px solid black; 
+/* Main Content */
+main {
+    padding: 20px;
 }
 
-/* einde header */
-main{
-    margin-left: 10px;
+/* Section for important information */
+.information {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-main h2{
-    color: whitesmoke;
-    text-decoration: underline;
 
+.information h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
 }
+
 .main-list {
-    padding-bottom: 20px;
-    margin-bottom: 0px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .main-list li {
-    color: whitesmoke;
-    margin-top: 10px;
-    font-size: 20px;
-    color: white;
-    
-}
-
-
-.meldingen form{
-    display: flex;
-    color: aquamarine;
     font-size: 18px;
-    border: 4px solid black;
-    background-color: rgb(76, 110, 132);
-    padding: 10px;
-    border-radius: 10px;
-    
-}
-.meldingen input{
-    margin: 3px;
+    color: #34495e;
+    padding: 8px 0;
+    border-bottom: 1px solid #ecf0f1;
 }
 
-.meldingen input{
-    border: 2px solid gray;
+.main-list li:last-child {
+    border-bottom: none;
+}
+
+/* Formulier sectie */
+.meldingen {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.meldingen h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+form input, form select {
     padding: 8px;
-    transition: border 0.2s ease-in-out; 
-
-}
-.meldingen input:hover{
-    border: 3px solid black; 
-
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
 }
 
-.meldingen select:hover{
-    border: 2px solid black;
+form .button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.meldingen select{
-    font-size: 15px;
-    margin: 5px;
+form .button:hover {
+    background-color: #2980b9;
 }
 
-.meldingen button{
-    margin: 5px;
-    padding: 5px;
-    font-size: 15px;
-    
-}
-#total_cases{
-    text-decoration: none;
-    font-size: 20px;
-    
+/* Section voor grafiek */
+.chartSection {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
 }
 
-#besmetting-form div{
-    margin-right: 60px;
+.chartSection h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-
+canvas {
+    width: 100% !important;
+    height: auto;
+    margin-top: 20px;
+}
 
