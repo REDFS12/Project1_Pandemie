@@ -81,26 +81,26 @@ async function drawRegioChart() {
     new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: Object.keys(regioTelling),
-          datasets: [{
-            label: 'Aantal meldingen in de regio',
-            data: Object.values(regioTelling),
-            backgroundColor: ['black', 'orange','yellow'],
-    
-          }]
+            labels: Object.keys(regioTelling),
+            datasets: [{
+                label: 'Aantal meldingen in de regio',
+                data: Object.values(regioTelling),
+                backgroundColor: ['#3b82f6', '#f97316', '#facc15'],
+                borderRadius: 8
+            }]
         },
         options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                stepSize: 1
-              }
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
             }
-          }
         }
-      });
-    };
+    });
+}
 
-    drawRegioChart()
+drawRegioChart();

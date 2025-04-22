@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="/css/style_doctor_dashboard.css">
+    <!-- Chart.js import -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -21,7 +23,6 @@
         </nav>
     </header>
 
-
 <main>
 <section class="information">
     <h2>Important information:</h2>
@@ -34,53 +35,52 @@
 </section>
 </section>
 
-    <hr>
-<section class="meldingen">
+<hr>
 
+<section class="meldingen">
     <h2>Nieuwe besmetting melden:</h2>
     <form id="besmetting-form">
+        <div class="infoPersoon">
+            <label>Regio:
+                <select id="regio">
+                    <option value="Brussel">Brussel</option>
+                    <option value="Vlaams-Brabant">Vlaams-Brabant</option>
+                    <option value="Antwerpen">Antwerpen</option>
+                </select>
+            </label><br>
 
-    <div class="infoPersoon">
-        <label>Regio:
-            <select id="regio">
-                <option value="Brussel">Brussel</option>
-                <option value="Vlaams-Brabant">Vlaams-Brabant</option>
-                <option value="Antwerpen">Antwerpen</option>
-              </select>
-        </label><br>
+            <label>Werk Locatie:
+                <input type="text" id="werkLocatie" required>
+            </label><br>
 
-        <label>Werk Locatie:
-            <input type="text" id="werkLocatie" required>
-        </label><br>
+            <label>Leeftijd:
+                <input type="number" id="leeftijd" required>
+            </label><br>
 
-        <label>Leeftijd:
-            <input type="number" id="leeftijd" required>
-        </label><br>
+            <label>Grootte van het gezin:
+                <input type="number" id="gezinGrootte" required>
+            </label><br>
 
-        <label>Grootte van het gezin:
-            <input type="number" id="gezinGrootte" required>
-        </label><br>
+            <label>Geslacht:
+                <select id="geslacht">
+                    <option value="man">Man</option>
+                    <option value="vrouw">Vrouw</option>
+                </select required>
+            </label><br>
+        </div>
 
-        <label>Geslacht:
-            <select id="geslacht">
-                <option value="man">Man</option>
-                <option value="vrouw">Vrouw</option>
-            </select required>
-        </label><br>
-    </div>
-
-    <div class="infoVirus"><label>Type Virus:
-            <input type="text" id="virusType" required> 
-
-        </label><br>
+        <div class="infoVirus">
+            <label>Type Virus:
+                <input type="text" id="virusType" required> 
+            </label><br>
 
             <label>Datum besmetting:
                 <input type="date" id="datumBesmetting" required>
             </label><br>
 
-                <label>Ingave Datum:
-                    <input type="date" id="ingaveDatum" required>
-                </label><br>
+            <label>Ingave Datum:
+                <input type="date" id="ingaveDatum" required>
+            </label><br>
 
             <label>Genezing Datum:
                 <input type="date" id="genezingDatum">
@@ -91,32 +91,24 @@
                     <option value="gevaccineerd">Gevaccineerd</option>
                     <option value="nietGevaccineerd">Niet gevaccineerd</option>
                 </select>
-                </label>
-    </div> 
-            <button class="button" type="submit">Opslaan</button>
+            </label>
+        </div> 
+
+        <button class="button" type="submit">Opslaan</button>
     </form>
 </section>
 
 <section class="chartSection">
     <h2>Besmettingen per Regio:</h2>
-    <!-- <label for="regioSelect">Kies een regio:</label>
-    <select id="regioSelect">
-      <option value="alle">Alle Regio's</option>
-      <option value="Brussel">Brussel</option>
-      <option value="Vlaams-Brabant">Vlaams-Brabant</option>
-      <option value="Antwerpen">Antwerpen</option>
-    </select> -->
-    <canvas id="regioChart" width="100" height="30"></canvas>
-  </section>
+    <canvas id="regioChart" style="width: 300px; height: 300px;"></canvas>
+</section>
 </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script  type="module" src="/javascript/doctor_dashboard.js" ></script>
-    <script type="module" src="/javascript/import.js"></script>
+<!-- Scripts -->
+<script type="module" src="/javascript/doctor_dashboard.js"></script>
+<script type="module" src="/javascript/import.js"></script>
 
 </body>
-
 <footer>
-    
 </footer>
 </html>
