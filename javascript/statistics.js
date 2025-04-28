@@ -50,6 +50,7 @@ function updateChart(dataPerRegio) {
     const labels = Object.keys(dataPerRegio);
     const casesData = labels.map(regio => dataPerRegio[regio].cases);
     const activeData = labels.map(regio => dataPerRegio[regio].active);
+    const recoveredData = labels.map(regio => dataPerRegio[regio].recovered);
 
     new Chart(ctx, {
         type: 'bar',
@@ -63,6 +64,21 @@ function updateChart(dataPerRegio) {
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 },
+                {
+                    label: 'Actieve gevallen',
+                    data: activeData,
+                    backgroundColor: 'red',
+                    borderColor: 'darkred',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Herstelde gevallen',
+                    data: recoveredData,
+                    backgroundColor: 'lightgreen',
+                    borderColor: 'green',
+                    borderWidth: 1
+
+                }
 
             ]
         },
