@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belgian Pandemic Monitor - Statistics</title>
+    <title>Statistics - Belgian Pandemic Monitor </title>
     <link rel="stylesheet" href="/css/style_statistics.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Voor de grafieken -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
@@ -17,7 +17,6 @@
             <li><a href="/html/dashboard.html">Home</a></li>
             <li><a href="/html/about.html">About</a></li>
             <li><a href="/html/statistics.html">Statistics</a></li>
-            <li><a href="/html/resources.html">Resources</a></li>
             <li><a href="/html/login.html">Sign in</a></li>
         </ul>
     </nav>
@@ -45,10 +44,10 @@
             <thead>
                 <tr>
                     <th>Regio</th>
-                    <th>Totaal gevallen</th>
+                    <th>Totale gevallen</th>
                     <th>Actieve gevallen</th>
                     <th>Herstelde gevallen</th>
-                    <th>Sterfgevallen</th>
+                    <!-- <th>Sterfgevallen</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -57,7 +56,12 @@
         </table>
 
     
-        <canvas id="statisticsChart" width="400" height="200"></canvas>
+        <div class="grafiek-container">
+            <canvas id="statisticsChart" width="300" height="200"></canvas>
+            <canvas id="leeftijdChart" width="300" height="200"></canvas>
+            <canvas id="virusChart" width="300" height="200"></canvas>
+        </div>
+        
 
     </section>
 </main>
@@ -65,4 +69,7 @@
 <script type="module" src="/javascript/statistics.js"></script>
 
 </body>
+<footer>
+    <p>&copy; 2025 Belgian Pandemic Monitor. Alle rechten voorbehouden.</p>
+</footer>
 </html>

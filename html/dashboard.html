@@ -3,46 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belgian Pandemic Monitor</title>
+    <title>Dashboard - Belgian Pandemic Monitor</title>
     <link rel="stylesheet" href="/css/style_dashboard.css">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
-<body>
-    <section class="headerSection">
+<body class="page-container">
     <header class="nav">
         <nav>
             <ul class="nav-list">
                 <li><a href="/html/dashboard.html">Home</a></li>
                 <li><a href="/html/about.html">About</a></li>
                 <li><a href="/html/statistics.html">Statistics</a></li>
-                <li><a href="Resources">Resources</a></li>
                 <li><a href="/html/login.html">Sign in</a></li>
             </ul>
         </nav>
-</header>
+    </header>
 
-<main>
-    <section class="information">
-        <h2>Important information:</h2>
-        <ul class="main-list">
-            <li>Totaal gevallen: <span id="total_cases"></span></li>
-            <li>Actieve gevallen: <span id="active_cases"></span></li>
-            <li>Herstelde gevallen: <span id="recovered_cases"></span></li>
-            <li>Sterfgevallen: <span id="death_cases"></span></li> 
-              
-        </ul>
-    </section>
-</section>
-    <hr>
-</main>
-<script type="module" src="/javascript/dashboard.js" ></script>
-<script type="module" src="/javascript/import.js"></script>
+    <main class="main-content">
+        <h1>Welkom op Belgium Monitor.</h1>
+        <p>Bekijk actuele cijfers over besmettingen, herstelingen, etc.</p>
 
+        <section class="information">
+            <h2>Important information:</h2>
+            <ul class="main-list">
+                <li>Totaal gevallen: <span id="total_cases"></span></li>
+                <li>Actieve gevallen: <span id="active_cases"></span></li>
+                <li>Herstelde gevallen: <span id="recovered_cases"></span></li>
+                <li>Sterfgevallen: <span id="death_cases"></span></li>
+            </ul>
+        </section>
+        <hr>
+    </main>
 
+    <footer>
+        <p>&copy; 2025 Belgian Pandemic Monitor. Alle rechten voorbehouden.</p>
+    </footer>
+
+    <script type="module" src="/javascript/dashboard.js"></script>
+    <script type="module" src="/javascript/import.js"></script>
 </body>
 
-<footer>
 
-</footer>
 </html>

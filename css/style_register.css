@@ -111,9 +111,27 @@ button:hover {
     color: #3498db;
     text-decoration: none;
     font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 
 .link-back a:hover {
     text-decoration: underline;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
 }
 

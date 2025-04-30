@@ -5,9 +5,9 @@ import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/fi
 async function getStatisticsData() {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
     const dataPerRegio = {
-        'Brussel': { cases: 0, active: 0, recovered: 0 },
-        'Vlaams-Brabant': { cases: 0, active: 0, recovered: 0 },
-        'Antwerpen': { cases: 0, active: 0, recovered: 0 }
+        'Brussel': { cases: 0, active: 0, recovered: 0, leeftijden: [], virusTypes: {} },
+        'Vlaams-Brabant': { cases: 0, active: 0, recovered: 0, leeftijden: [], virusTypes: {} },
+        'Antwerpen': { cases: 0, active: 0, recovered: 0, leeftijden: [], virusTypes: {} }
     };
 
     snapshot.forEach(doc => {
@@ -20,6 +20,18 @@ async function getStatisticsData() {
             dataPerRegio[regio].cases++;
             if (isActive) dataPerRegio[regio].active++;
             if (isRecovered) dataPerRegio[regio].recovered++;
+        
+            if (data.leeftijd) {
+                dataPerRegio[regio].leeftijden.push(data.leeftijd);
+            }
+        
+            if (data.virusType) {
+                const vt = data.virusType;
+                if (!dataPerRegio[regio].virusTypes[vt]) {
+                    dataPerRegio[regio].virusTypes[vt] = 0;
+                }
+                dataPerRegio[regio].virusTypes[vt]++;
+            }
         }
     });
 
@@ -58,10 +70,10 @@ function updateChart(dataPerRegio) {
             labels: labels,
             datasets: [
                 {
-                    label: 'Totaal Gevallen',
+                    label: 'Totale Gevallen',
                     data: casesData,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'blue',
+                    borderColor: 'darkblue',
                     borderWidth: 1
                 },
                 {
@@ -77,9 +89,7 @@ function updateChart(dataPerRegio) {
                     backgroundColor: 'lightgreen',
                     borderColor: 'green',
                     borderWidth: 1
-
                 }
-
             ]
         },
         options: {
@@ -95,7 +105,7 @@ function updateChart(dataPerRegio) {
     });
 }
 
-// Functie voor filteren
+// Functie voor het filteren van regio's
 document.getElementById('filter-knop').addEventListener('click', async () => {
     const selectedRegio = document.getElementById('filter-regio').value;
     const dataPerRegio = await getStatisticsData();
@@ -111,11 +121,100 @@ document.getElementById('filter-knop').addEventListener('click', async () => {
 
     updateStatisticsTable(dataPerRegio);
     updateChart(dataPerRegio);
+    updateLeeftijdChart(dataPerRegio); // Herupdate de leeftijd grafiek
+    updateVirusTypeChart(dataPerRegio); // Herupdate de virus type grafiek
 });
 
-// Initialiseer de pagina bij het laden
+// Functie voor het berekenen en tonen van de gemiddelde leeftijd per regio in grafiek
+function updateLeeftijdChart(dataPerRegio) {
+    const ctx = document.getElementById('leeftijdChart').getContext('2d');
+    const labels = Object.keys(dataPerRegio);
+    
+    const gemiddeldeLeeftijden = labels.map(regio => {
+        const leeftijden = dataPerRegio[regio].leeftijden;
+        const som = leeftijden.reduce((a, b) => a + b, 0);
+        return leeftijden.length ? (som / leeftijden.length).toFixed(1) : 0;
+    });
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Gemiddelde Leeftijd',
+                data: gemiddeldeLeeftijden,
+                backgroundColor: 'orange'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 5
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Functie voor het tonen van virus types per regio in grafiek
+function updateVirusTypeChart(dataPerRegio) {
+    const ctx = document.getElementById('virusChart').getContext('2d');
+    const regioNamen = Object.keys(dataPerRegio);
+
+    const alleVirusTypes = new Set();
+    regioNamen.forEach(regio => {
+        Object.keys(dataPerRegio[regio].virusTypes).forEach(type => {
+            alleVirusTypes.add(type);
+        });
+    });
+
+    const virusTypesArray = Array.from(alleVirusTypes);
+    const kleuren = ['#3498db', '#e74c3c', '#2ecc71', '#9b59b6'];
+
+    const datasets = virusTypesArray.map((virusType, i) => ({
+        label: virusType,
+        data: regioNamen.map(regio => dataPerRegio[regio].virusTypes[virusType] || 0),
+        backgroundColor: kleuren[i % kleuren.length]
+    }));
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: regioNamen,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Virus Type per Regio'
+                }
+            },
+            scales: {
+                x: {
+                    stacked: true
+                },
+                y: {
+                    stacked: true,
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Initialiseren van de grafieken bij het laden van de pagina
 window.addEventListener('DOMContentLoaded', async () => {
     const dataPerRegio = await getStatisticsData();
     updateStatisticsTable(dataPerRegio);
     updateChart(dataPerRegio);
+    updateLeeftijdChart(dataPerRegio);
+    updateVirusTypeChart(dataPerRegio);
 });
