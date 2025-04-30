@@ -157,33 +157,26 @@ function updateLeeftijdChart(dataPerRegio) {
 // Virus type per regio grafiek
 function updateVirusTypeChart(dataPerRegio) {
     const ctx = document.getElementById('virusChart').getContext('2d');
+    
+    const virusTypes = ['Covid', 'Grippe', 'Malaria'];
     const regioNamen = Object.keys(dataPerRegio);
 
-    const alleVirusTypes = new Set();
-    regioNamen.forEach(regio => {
-        Object.keys(dataPerRegio[regio].virusTypes).forEach(type => {
-            alleVirusTypes.add(type);
-        });
-    });
-
-    
-    const virusTypesArray = ['Covid', 'Grippe', 'Malaria'];
-    const virusKleuren = {
-        'Covid': 'lightblue',   
-        'Grippe': 'pink',   
-        'Malaria': 'darkgreen'  
+    const regioKleuren = {
+        'Brussel': 'blue',
+        'Vlaams-Brabant': 'orange',  
+        'Antwerpen': 'green'        
     };
 
-    const datasets = virusTypesArray.map(virusType => ({
-        label: virusType,
-        data: regioNamen.map(regio => dataPerRegio[regio].virusTypes[virusType] || 0),
-        backgroundColor: virusKleuren[virusType] || '#95a5a6'
+    const datasets = regioNamen.map(regio => ({
+        label: regio,
+        data: virusTypes.map(virus => dataPerRegio[regio].virusTypes[virus] || 0),
+        backgroundColor: regioKleuren[regio] || '#95a5a6'
     }));
 
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: regioNamen,
+            labels: virusTypes,
             datasets: datasets
         },
         options: {
@@ -191,13 +184,14 @@ function updateVirusTypeChart(dataPerRegio) {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Virus Type per Regio'
+                    text: 'Aantal meldingen per Virus Type en Regio'
                 }
             },
             scales: {
-                x: { stacked: true },
+                x: {
+                    stacked: false
+                },
                 y: {
-                    stacked: true,
                     beginAtZero: true,
                     ticks: { stepSize: 1 }
                 }
