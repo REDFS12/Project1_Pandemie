@@ -115,6 +115,8 @@ canvas {
 
 .grafiek-container {
     display: flex;
+    width: 30%;
+    gap: 30px;
 }
 
 .grafiek-container canvas {

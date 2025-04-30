@@ -20,11 +20,11 @@ async function getStatisticsData() {
             dataPerRegio[regio].cases++;
             if (isActive) dataPerRegio[regio].active++;
             if (isRecovered) dataPerRegio[regio].recovered++;
-        
+
             if (data.leeftijd) {
                 dataPerRegio[regio].leeftijden.push(data.leeftijd);
             }
-        
+
             if (data.virusType) {
                 const vt = data.virusType;
                 if (!dataPerRegio[regio].virusTypes[vt]) {
@@ -38,10 +38,10 @@ async function getStatisticsData() {
     return dataPerRegio;
 }
 
-// Functie om de tabel bij te werken
+// Tabel updaten
 function updateStatisticsTable(dataPerRegio) {
     const tableBody = document.querySelector('#statistics-table tbody');
-    tableBody.innerHTML = ''; 
+    tableBody.innerHTML = '';
 
     Object.keys(dataPerRegio).forEach(regio => {
         const data = dataPerRegio[regio];
@@ -56,7 +56,7 @@ function updateStatisticsTable(dataPerRegio) {
     });
 }
 
-// Functie om de grafiek bij te werken
+// Grafiek met totale, actieve en herstelde gevallen
 function updateChart(dataPerRegio) {
     const ctx = document.getElementById('statisticsChart').getContext('2d');
     const labels = Object.keys(dataPerRegio);
@@ -77,14 +77,14 @@ function updateChart(dataPerRegio) {
                     borderWidth: 1
                 },
                 {
-                    label: 'Actieve gevallen',
+                    label: 'Actieve Gevallen',
                     data: activeData,
                     backgroundColor: 'red',
                     borderColor: 'darkred',
                     borderWidth: 1
                 },
                 {
-                    label: 'Herstelde gevallen',
+                    label: 'Herstelde Gevallen',
                     data: recoveredData,
                     backgroundColor: 'lightgreen',
                     borderColor: 'green',
@@ -96,21 +96,18 @@ function updateChart(dataPerRegio) {
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    }
+                    ticks: { stepSize: 1 }
                 }
             }
         }
     });
 }
 
-// Functie voor het filteren van regio's
+// Regio-filterknop
 document.getElementById('filter-knop').addEventListener('click', async () => {
     const selectedRegio = document.getElementById('filter-regio').value;
     const dataPerRegio = await getStatisticsData();
 
-    // Filter de data op regio als "all" is geselecteerd, worden alle regio's getoond
     if (selectedRegio !== 'all') {
         Object.keys(dataPerRegio).forEach(regio => {
             if (regio !== selectedRegio) {
@@ -121,15 +118,15 @@ document.getElementById('filter-knop').addEventListener('click', async () => {
 
     updateStatisticsTable(dataPerRegio);
     updateChart(dataPerRegio);
-    updateLeeftijdChart(dataPerRegio); // Herupdate de leeftijd grafiek
-    updateVirusTypeChart(dataPerRegio); // Herupdate de virus type grafiek
+    updateLeeftijdChart(dataPerRegio);
+    updateVirusTypeChart(dataPerRegio);
 });
 
-// Functie voor het berekenen en tonen van de gemiddelde leeftijd per regio in grafiek
+// Gemiddelde leeftijden grafiek
 function updateLeeftijdChart(dataPerRegio) {
     const ctx = document.getElementById('leeftijdChart').getContext('2d');
     const labels = Object.keys(dataPerRegio);
-    
+
     const gemiddeldeLeeftijden = labels.map(regio => {
         const leeftijden = dataPerRegio[regio].leeftijden;
         const som = leeftijden.reduce((a, b) => a + b, 0);
@@ -141,7 +138,7 @@ function updateLeeftijdChart(dataPerRegio) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Gemiddelde Leeftijd',
+                label: 'Gemiddelde Leeftijd per regio',
                 data: gemiddeldeLeeftijden,
                 backgroundColor: 'orange'
             }]
@@ -150,16 +147,14 @@ function updateLeeftijdChart(dataPerRegio) {
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: {
-                        stepSize: 5
-                    }
+                    ticks: { stepSize: 5 }
                 }
             }
         }
     });
 }
 
-// Functie voor het tonen van virus types per regio in grafiek
+// Virus type per regio grafiek
 function updateVirusTypeChart(dataPerRegio) {
     const ctx = document.getElementById('virusChart').getContext('2d');
     const regioNamen = Object.keys(dataPerRegio);
@@ -171,13 +166,18 @@ function updateVirusTypeChart(dataPerRegio) {
         });
     });
 
-    const virusTypesArray = Array.from(alleVirusTypes);
-    const kleuren = ['#3498db', '#e74c3c', '#2ecc71', '#9b59b6'];
+    
+    const virusTypesArray = ['Covid', 'Grippe', 'Malaria'];
+    const virusKleuren = {
+        'Covid': 'lightblue',   
+        'Grippe': 'pink',   
+        'Malaria': 'darkgreen'  
+    };
 
-    const datasets = virusTypesArray.map((virusType, i) => ({
+    const datasets = virusTypesArray.map(virusType => ({
         label: virusType,
         data: regioNamen.map(regio => dataPerRegio[regio].virusTypes[virusType] || 0),
-        backgroundColor: kleuren[i % kleuren.length]
+        backgroundColor: virusKleuren[virusType] || '#95a5a6'
     }));
 
     new Chart(ctx, {
@@ -195,22 +195,18 @@ function updateVirusTypeChart(dataPerRegio) {
                 }
             },
             scales: {
-                x: {
-                    stacked: true
-                },
+                x: { stacked: true },
                 y: {
                     stacked: true,
                     beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    }
+                    ticks: { stepSize: 1 }
                 }
             }
         }
     });
 }
 
-// Initialiseren van de grafieken bij het laden van de pagina
+// Initialisatie
 window.addEventListener('DOMContentLoaded', async () => {
     const dataPerRegio = await getStatisticsData();
     updateStatisticsTable(dataPerRegio);
