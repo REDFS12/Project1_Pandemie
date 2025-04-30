@@ -94,7 +94,7 @@ main {
 
 hr {
     margin-top: 30px;
-    border: 1px solid #ecf0f1;
+    border: 1px solid lightgrey;
 }
 
 .info-virus hr{
@@ -113,10 +113,10 @@ hr {
 }
 
 #details-link{
-    color: darkblue;
+    color: lightsalmon;
 
 
 }
 #details-link a{
-    color: red;
+    color: blue;
 }
