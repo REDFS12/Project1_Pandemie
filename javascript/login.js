@@ -20,7 +20,7 @@ loginForm.addEventListener('submit', async (e) => {
         console.log('User logged in:', user);
 
         // Verkrijg het gebruikersdocument uit Firestore op basis van de UID
-        const docRef = doc(db, "dokters", user.uid);  // Zorg dat je zoekt in de juiste collectie ("dokters")
+        const docRef = doc(db, "dokters", user.uid);  
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -29,7 +29,7 @@ loginForm.addEventListener('submit', async (e) => {
 
             console.log('User role from Firestore:', userRole);
 
-            // Redirect naar dashboard op basis van de rol in Firestore
+            // Stuurt naar dashboard op basis van de rol in Firestore
             if (userRole === "dokter") {
                 window.location.href = '/html/doctor_dashboard.html';
             } else if (userRole === "gebruikers") {

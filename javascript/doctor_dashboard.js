@@ -84,7 +84,7 @@ async function drawRegioChart() {
         }
     });
 
-    // Toon statistieken in HTML (optioneel als je deze velden hebt)
+    // Toon statistieken in HTML 
     const actief = document.getElementById("aantal_actieve");
     const hersteld = document.getElementById("aantal_hersteld");
 

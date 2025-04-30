@@ -14,7 +14,7 @@ registerForm.addEventListener('submit', async (e) => {
 
     const email = emailField.value;
     const password = passwordField.value;
-    const rol = roleSelect.value; // Haal de gekozen rol op
+    const rol = roleSelect.value; 
 
 
 
@@ -48,7 +48,7 @@ registerForm.addEventListener('submit', async (e) => {
             alert('Fout bij registratie: ' + error.message);
         }
     
-        // Stop verdere verwerking
+    
         return;
     }
     
