@@ -14,7 +14,7 @@ registerForm.addEventListener('submit', async (e) => {
 
     const email = emailField.value;
     const password = passwordField.value;
-    const rol = roleSelect.value; // Haal de gekozen rol op
+    const rol = roleSelect.value; 
 
 
 
@@ -43,12 +43,12 @@ registerForm.addEventListener('submit', async (e) => {
         console.error("Error tijdens registratie:", error);
     
         if (error.code === 'auth/email-already-in-use') {
-            alert('❌ Dit e-mailadres is al geregistreerd. Log in of gebruik een ander e-mailadres.');
+            alert('Dit e-mailadres is al geregistreerd. Log in of gebruik een ander e-mailadres.');
         } else {
-            alert('⚠️ Fout bij registratie: ' + error.message);
+            alert('Fout bij registratie: ' + error.message);
         }
     
-        // Stop verdere verwerking
+    
         return;
     }
     
