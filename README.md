@@ -1,4 +1,4 @@
-# Programming-Project: Pandemie
+# Programming-Project: Belgian Pandemic Monitor
 
 A responsive web-based application built to monitor and visualize pandemic statistics across different regions in a country. The project includes real-time data management using Firebase and is structured to accommodate both general users and medical personnel (doctor dashboard).
 
