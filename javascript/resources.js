@@ -1,5 +1,5 @@
 
-    import { db } from '../firebaseConfig.js';
+    import { db } from './firebaseConfig.js';
     import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
     async function laadMeldingen() {
@@ -10,7 +10,7 @@
             const data = doc.data();
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td>${data.meldingsDatum || 'Onbekend'}</td>
+                <td>${data.ingaveDatum || 'Onbekend'}</td>
                 <td>${data.regio || 'Onbekend'}</td>
                 <td>${data.leeftijd || '-'}</td>
                 <td>${data.geslacht || '-'}</td>
