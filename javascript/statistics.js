@@ -67,6 +67,7 @@ function updateChart(dataPerRegio) {
     const casesData = labels.map(regio => dataPerRegio[regio].cases);
     const activeData = labels.map(regio => dataPerRegio[regio].active);
     const recoveredData = labels.map(regio => dataPerRegio[regio].recovered);
+    const deathData = labels.map(regio => dataPerRegio[regio].death);
 
     new Chart(ctx, {
         type: 'bar',
@@ -92,6 +93,14 @@ function updateChart(dataPerRegio) {
                     data: recoveredData,
                     backgroundColor: 'lightgreen',
                     borderColor: 'green',
+                    borderWidth: 1
+                },
+
+                {
+                    label: 'Sterf Gevallen',
+                    data: deathData,
+                    backgroundColor: 'black',
+                    borderColor: 'grey',
                     borderWidth: 1
                 }
             ]
