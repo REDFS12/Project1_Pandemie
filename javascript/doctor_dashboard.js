@@ -18,6 +18,7 @@ form.addEventListener('submit', async (e) => {
     const ingaveDatum = document.getElementById('ingaveDatum').value;
     const genezingDatum = document.getElementById('genezingDatum').value;
     const statusVaccinatie = document.getElementById('statusVaccinatie').value;
+    const isGestorven = document.getElementById('isGestorven').value; // Haal isGestorven op
 
     try {
         const user = auth.currentUser;
@@ -33,6 +34,7 @@ form.addEventListener('submit', async (e) => {
             ingaveDatum,
             genezingDatum,
             statusVaccinatie,
+            isGestorven: isGestorven === "true",  
             dokterId: user.email,
         });
 
