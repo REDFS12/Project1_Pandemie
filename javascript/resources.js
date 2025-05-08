@@ -1,6 +1,15 @@
-import { db } from './firebaseConfig.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 import { collection, getDocs, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+import { auth, db} from './firebaseConfig.js';
 
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = "/html/login.html";
+    } else {
+      console.log("Gebruiker is ingelogd:", user.email);
+      await laadMeldingen(); // Laad de data enkel als ingelogd
+    }
+  });
 // Functie om de tabel met meldingen te laden
 async function loadMeldingen() {
     try {

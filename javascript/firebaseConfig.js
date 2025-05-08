@@ -8,7 +8,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyDleTLn1fyEZUvv08_40fwr-EMn_2xoi-o",
     authDomain: "project-pandemie.firebaseapp.com",
     projectId: "project-pandemie",
-    storageBucket: "project-pandemie.firebasestorage.app",
+    storageBucket: "project-pandemie.appspot.com",
     messagingSenderId: "977307066282",
     appId: "1:977307066282:web:45d993cf05efd1ce3b55d3",
     measurementId: "G-99H8JZ6Z84"
