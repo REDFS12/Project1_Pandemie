@@ -80,7 +80,7 @@ body {
     border: 1px solid #ccc;
 }
 
-button {
+#login-form button {
     background-color: #3498db;
     color: white;
     padding: 10px;
@@ -91,8 +91,32 @@ button {
     width: 100%;
 }
 
+.language-buttons {
+    display: flex;
+    justify-content: left;
+    margin: 10px 0;
+}
+
+.language-buttons button {
+    padding: 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.language-buttons button:hover {
+    background-color: grey;
+}
+
 button:hover {
     background-color: #2980b9;
+}
+
+.nav-list a.active {
+    color: #3498db; /* Highlight color */
+    font-weight: bold; /* Optional: Make it bold */
+    text-decoration: underline; /* Optional: Add underline */
 }
 
 /* Login Options Links */

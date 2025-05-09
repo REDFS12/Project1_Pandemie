@@ -16,6 +16,29 @@ body {
     flex: 1;
 }
 
+.language-buttons {
+    display: flex;
+    justify-content: left;
+    margin: 10px 0;
+}
+
+.language-buttons button {
+    padding: 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#language-btn {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+.language-buttons button:hover {
+    background-color: grey;
+}
 
 /* Header / Navigation Bar */
 .nav {
@@ -44,6 +67,12 @@ body {
 
 .nav-list a:hover {
     color: #3498db;
+}
+
+.nav-list a.active {
+    color: #3498db; /* Highlight color */
+    font-weight: bold; /* Optional: Make it bold */
+    text-decoration: underline; /* Optional: Add underline */
 }
 
 main {

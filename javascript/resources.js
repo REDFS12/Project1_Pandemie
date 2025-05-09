@@ -23,3 +23,15 @@
 
     window.addEventListener('DOMContentLoaded', laadMeldingen);
 
+    const now = new Date();
+
+    const currentDateTime = now.toLocaleString();
+
+    // localStorage
+document.querySelectorAll('.language-buttons button').forEach(button => {
+    button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang');
+        localStorage.setItem('selectedLanguage', lang); // Save the selected language
+        switchLanguage(lang); // Update the content dynamically
+    });
+});
