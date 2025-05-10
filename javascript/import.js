@@ -51,3 +51,22 @@ export async function getRecoveredCases() {
     return "Fout";
   }
 }
+
+export async function getDeathsCases() {
+  try {
+    const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
+    let deathCount = 0;
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.gestorven) {
+        deathCount++;
+      }
+    });
+
+    return deathCount;
+  } catch (err) {
+    console.error("Fout bij tellen van de sterf gevallen:", err);
+    return "Fout";
+  }
+}

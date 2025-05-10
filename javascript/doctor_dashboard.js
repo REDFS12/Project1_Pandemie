@@ -1,6 +1,6 @@
 import { db, auth } from './firebaseConfig.js';
 import { collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-import { getTotalCases, getActiveCases, getRecoveredCases } from './import.js';
+import { getTotalCases, getActiveCases, getRecoveredCases, getDeathsCases } from './import.js';
 
 // Formulierverwerking
 const form = document.getElementById('besmetting-form');
@@ -54,6 +54,10 @@ getActiveCases().then(active => {
 getRecoveredCases().then(recovered => {
     document.getElementById("recovered_cases").innerText = recovered;
 });
+
+getDeathsCases().then(death => {
+    document.getElementById("death_cases").innerText = death
+})
 
 // Regio-grafiek
 async function drawRegioChart() {

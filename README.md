@@ -4,6 +4,9 @@ A responsive web-based application built to monitor and visualize pandemic stati
 
 Canva-link: https://www.canva.com/design/DAGknpwriq0/CG36IOqOiulUcKYA7oo5dg/edit?utm_content=DAGknpwriq0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
+Jira-link: https://ehbprogrammingprojectpandemicsmonitor.atlassian.net/jira/core/projects/PAN/board?groupBy=status&atlOrigin=eyJpIjoiNGFkN2E5OGE3ZDY3NGRiYzk4OTYyYmM2ZGI4MDIwZWUiLCJwIjoiaiJ9
+
+
 ![Pandemic App Logo](./images/pandemie-logo-background.jpg)
 
 ---

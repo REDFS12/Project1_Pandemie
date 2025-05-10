@@ -5,9 +5,9 @@ import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/fi
 async function getStatisticsData() {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
     const dataPerRegio = {
-        'Brussel': { cases: 0, active: 0, recovered: 0, leeftijden: [], virusTypes: {} },
-        'Vlaams-Brabant': { cases: 0, active: 0, recovered: 0, leeftijden: [], virusTypes: {} },
-        'Antwerpen': { cases: 0, active: 0, recovered: 0, leeftijden: [], virusTypes: {} }
+        'Brussel': { cases: 0, active: 0, recovered: 0, death: 0, leeftijden: [], virusTypes: {} },
+        'Vlaams-Brabant': { cases: 0, active: 0, recovered: 0, death: 0, leeftijden: [], virusTypes: {} },
+        'Antwerpen': { cases: 0, active: 0, recovered: 0, death: 0, leeftijden: [], virusTypes: {} }
     };
 
     snapshot.forEach(doc => {
@@ -15,11 +15,14 @@ async function getStatisticsData() {
         const regio = data.regio;
         const isActive = !data.genezingDatum;
         const isRecovered = !!data.genezingDatum;
+        const isDeath = data.gestorven;
+
 
         if (dataPerRegio.hasOwnProperty(regio)) {
             dataPerRegio[regio].cases++;
             if (isActive) dataPerRegio[regio].active++;
             if (isRecovered) dataPerRegio[regio].recovered++;
+            if(isDeath) dataPerRegio[regio].death++;
 
             if (data.leeftijd) {
                 dataPerRegio[regio].leeftijden.push(data.leeftijd);
@@ -51,6 +54,7 @@ function updateStatisticsTable(dataPerRegio) {
             <td>${data.cases}</td>
             <td>${data.active}</td>
             <td>${data.recovered}</td>
+            <td>${data.death}</td>
         `;
         tableBody.appendChild(row);
     });
@@ -63,6 +67,7 @@ function updateChart(dataPerRegio) {
     const casesData = labels.map(regio => dataPerRegio[regio].cases);
     const activeData = labels.map(regio => dataPerRegio[regio].active);
     const recoveredData = labels.map(regio => dataPerRegio[regio].recovered);
+    const deathData = labels.map(regio => dataPerRegio[regio].death);
 
     new Chart(ctx, {
         type: 'bar',
@@ -88,6 +93,14 @@ function updateChart(dataPerRegio) {
                     data: recoveredData,
                     backgroundColor: 'lightgreen',
                     borderColor: 'green',
+                    borderWidth: 1
+                },
+
+                {
+                    label: 'Sterf Gevallen',
+                    data: deathData,
+                    backgroundColor: 'black',
+                    borderColor: 'grey',
                     borderWidth: 1
                 }
             ]
