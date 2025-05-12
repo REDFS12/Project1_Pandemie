@@ -19,6 +19,7 @@ form.addEventListener('submit', async (e) => {
     const genezingDatum = document.getElementById('genezingDatum').value;
     const statusVaccinatie = document.getElementById('statusVaccinatie').value;
 
+
     try {
         const user = auth.currentUser;
 
@@ -33,6 +34,7 @@ form.addEventListener('submit', async (e) => {
             ingaveDatum,
             genezingDatum,
             statusVaccinatie,
+            
             dokterId: user.email,
         });
 
