@@ -19,6 +19,7 @@ form.addEventListener('submit', async (e) => {
     const genezingDatum = document.getElementById('genezingDatum').value;
     const statusVaccinatie = document.getElementById('statusVaccinatie').value;
 
+
     try {
         const user = auth.currentUser;
 
@@ -33,6 +34,7 @@ form.addEventListener('submit', async (e) => {
             ingaveDatum,
             genezingDatum,
             statusVaccinatie,
+            
             dokterId: user.email,
         });
 
@@ -123,3 +125,12 @@ async function drawRegioChart() {
 }
 
 drawRegioChart();
+
+// localStorage
+document.querySelectorAll('.language-buttons button').forEach(button => {
+    button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang');
+        localStorage.setItem('selectedLanguage', lang); // Save the selected language
+        switchLanguage(lang); // Update the content dynamically
+    });
+});

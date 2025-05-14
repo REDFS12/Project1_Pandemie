@@ -35,7 +35,30 @@ body {
     color: #3498db;
 }
 
+.nav-list a.active {
+    color: #3498db; /* Highlight color */
+    font-weight: bold; /* Optional: Make it bold */
+    text-decoration: underline; /* Optional: Add underline */
+}
+
 /* Main Content */
+
+.language-buttons {
+    display: flex;
+    justify-content: left;
+    margin: 10px 0;
+}
+
+.language-buttons button {
+    padding: 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.language-buttons button:hover {
+    background-color: grey;
+}
 main {
     padding: 20px;
 }

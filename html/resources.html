@@ -21,10 +21,15 @@
         </nav>
 
     </header>
-
+    <div class="language-buttons">
+        <button data-lang="en">🇬🇧</button>
+        <button data-lang="nl">🇳🇱</button>
+        <button data-lang="fr">🇫🇷</button>
+        <button data-lang="de">🇩🇪</button>
+      </div>
         <main>
             <section class="meldingen-sectie">
-                <h2>Overzicht van Meldingen</h2>
+                <h2>Overview of reports</h2>
                 <table id="meldingentabel">
                     <thead>
                         <tr>
@@ -34,8 +39,7 @@
                             <th>Geslacht</th>
                             <th>Virus Type</th>
                             <th>Vaccinatie status</th>
-                            <th class="death-button" data-id="documentId">Sterf Geval</thg>
-                            
+                            <th class="death-button" data-id="documentId">Sterf Geval</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,13 +47,38 @@
                     </tbody>
                 </table>
                 <p>
-                    Voor andere details van de meldingen kan je 
+                    Voor meer details van de meldingen kan je 
                     <a href="/html/statistics.html">hier klikken</a>.
                 </p>
             </section>
         </main>
         <script type="module" src="/javascript/resources.js"></script>
+        <script type="module" src="/javascript/resources_languages.js"></script>
+        <script type="module" src="/javascript/highlight_active_page.js"></script>
 
+        <p id="datetime">Current time:<span id="time"></span></p>
+
+        <script>
+          function updateDateTime() {
+            const now = new Date();
+            const currentDateTime = now.toLocaleString();
+            document.querySelector('#time').textContent = currentDateTime;
+          }
+        
+          setInterval(updateDateTime, 1000);
+        </script>
+
+            <p class="timestamp" id="timestamp">Page loaded at: </p>
+
+            <script>
+              window.addEventListener('load', () => {
+                const timestampElement = document.getElementById('timestamp');
+                const now = new Date();
+                const formatted = now.toLocaleString(); // local format: date and time
+                timestampElement.textContent += formatted;
+              });
+            </script>
+        </body>
     <footer>
         <p>&copy; 2025 Belgian Pandemic Monitor. Alle rechten voorbehouden.</p>
     </footer>

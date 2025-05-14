@@ -20,15 +20,22 @@
             </ul>
         </nav>
     </header>
-
+    <body>
+      <div class="language-buttons">
+        <button data-lang="en">🇬🇧</button>
+        <button data-lang="nl">🇳🇱</button>
+        <button data-lang="fr">🇫🇷</button>
+        <button data-lang="de">🇩🇪</button>
+      </div>
+    </body>
     <main class="main-content">
-        <h1>Welkom op Belgium Monitor.</h1>
-        <p>Bekijk actuele cijfers over besmettingen, herstelingen, etc.</p>
+        <h1>Welcome to the Belgian Pandemic Monitor</h1>
+        <p>Check the up-to-date numbers regarding viral infections in Belgium and more</p>
 
         <section class="information">
-            <h2>Important information:</h2>
+            <h2>Cases</h2>
             <ul class="main-list">
-                <li>Totaal gevallen: <span id="total_cases"></span></li>
+                <li>Totaal gevallen:<span id="total_cases"></span></li>
                 <li>Actieve gevallen: <span id="active_cases"></span></li>
                 <li>Herstelde gevallen: <span id="recovered_cases"></span></li>
                 <li>Sterf gevallen: <span id="death_cases"></span></li>
@@ -36,42 +43,42 @@
         </section>
         <hr>
 
-        <section class="info-virus">
-            <h2>Over de Virussen</h2>
+     <section class="info-virus">
+            <h2>About the Viruses</h2>
         
             <div class="covid-home">
                 <h3>Covid (COVID-19)</h3>
-                <p><strong>Volledige naam:</strong> Coronavirus Disease 2019</p>
-                <p><strong>Veroorzaker:</strong> SARS-CoV-2 (een coronavirus)</p>
-                <p><strong>Verspreiding:</strong> Via druppeltjes in de lucht (hoesten, niezen, praten)</p>
-                <p><strong>Symptomen:</strong> Koorts, hoest, vermoeidheid, ademhalingsproblemen, verlies van smaak/reuk</p>
-                <p><strong>Preventie:</strong> Vaccinatie, handen wassen, mondmasker dragen, ventilatie</p>
-                <p><strong>Ernst:</strong> Kan mild tot ernstig zijn, vooral gevaarlijk voor ouderen en mensen met onderliggende aandoeningen</p>
+                <p><strong>Full name:</strong> Coronavirus Disease 2019</p>
+                <p><strong>Causative agent:</strong> SARS-CoV-2 (een coronavirus)</p>
+                <p><strong>Spread:</strong> Through droplets in the air (coughing, sneezing, talking)</p>
+                <p><strong>Symptoms:</strong> Fever, cough, fatigue, breathing problems, loss of taste/smell</p>
+                <p><strong>Prevention:</strong> Vaccination, washing hands, wearing a face mask, ventilation</p>
+                <p><strong>Severity:</strong> Can be mild to severe, especially dangerous for the elderly and people with underlying conditions</p>
             </div>
             <hr>
         
-            <div class="grippe-home">
-                <h3>Grippe (Seizoensgriep)</h3>
-                <p><strong>Volledige naam:</strong> Influenza</p>
-                <p><strong>Veroorzaker:</strong> Influenzavirus (meestal type A of B)</p>
-                <p><strong>Verspreiding:</strong> Via speekseldruppels (hoesten, niezen)</p>
-                <p><strong>Symptomen:</strong> Hoge koorts, koude rillingen, spierpijn, vermoeidheid, droge hoest</p>
-                <p><strong>Preventie:</strong> Jaarlijkse griepprik, goede hygiëne</p>
-                <p><strong>Ernst:</strong> Meestal mild, maar kan leiden tot complicaties bij kwetsbare groepen</p>
+            <div class="griep-home">
+                <h3>Seasonal flu</h3>
+                <p><strong>Full name:</strong> Influenza</p>
+                <p><strong>Causative agent:</strong> Influenzavirus (usually type A or B)</p>
+                <p><strong>Spread:</strong> Through saliva droplets (coughing, sneezing)</p>
+                <p><strong>Symptoms:</strong> High fever, chills, muscle pain, fatigue, dry cough</p>
+                <p><strong>Prevention:</strong> Annual flu shot, good hygiene</p>
+                <p><strong>Severity:</strong> Usually mild, but can lead to complications in vulnerable groups</p>
             </div>
             <hr>
         
             <div class="malaria-home">
                 <h3>Malaria</h3>
-                <p><strong>Veroorzaker:</strong> Plasmodium-parasiet, overgedragen via muggenbeten (Anopheles-mug)</p>
-                <p><strong>Verspreiding:</strong> Niet van mens tot mens, enkel via muggen</p>
-                <p><strong>Symptomen:</strong> Koorts, koude rillingen, zweten, hoofdpijn, misselijkheid</p>
-                <p><strong>Preventie:</strong> Muggenwerende middelen, muskietennetten, antimalariamiddelen</p>
-                <p><strong>Ernst:</strong> Zonder behandeling kan het dodelijk zijn, vooral in tropische gebieden</p>
+                <p><strong>Causative agent:</strong> Plasmodium parasite, transmitted through mosquito bites (Anopheles mosquito)</p>
+                <p><strong>Spread:</strong> Not from person to person humans, only via mosquitoes</p>
+                <p><strong>Symptoms:</strong> Fever, chills, sweating, headache, nausea</p>
+                <p><strong>Prevention:</strong> Mosquito repellents, mosquito nets, antimalarials</p>
+                <p><strong>Severity:</strong> Without treatment it can be fatal, especially in tropical areas</p>
             </div>
             <hr>
         
-            <p><strong id="details-link">Voor meer details van de gevallen kan je op 
+            <p><strong id="details-link">Voor meer details van alle gevallen kan je op 
                 <a href="/html/statistics.html">STATISTICS</a> klikken.</strong>
             </p>
             
@@ -81,9 +88,11 @@
 
     <script type="module" src="/javascript/dashboard.js"></script>
     <script type="module" src="/javascript/import.js"></script>
+    <script type="module" src="/javascript/dashboard_language.js"></script>
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
 
     <footer>
-        <p>&copy; 2025 Belgian Pandemic Monitor. Alle rechten voorbehouden.</p>
+        <p>&copy; 2025 Belgian Pandemic Monitor. All rights reserved.</p>
     </footer>
 </body>
 
