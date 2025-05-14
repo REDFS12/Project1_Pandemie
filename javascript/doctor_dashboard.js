@@ -50,21 +50,22 @@ getTotalCases().then(total => {
 });
 
 getActiveCases().then(active => {
-    document.getElementById("active_cases").innerText = active;
+    document.getElementById("aantal_actieve").innerText = active;
 });
 
 getRecoveredCases().then(recovered => {
-    document.getElementById("recovered_cases").innerText = recovered;
+    document.getElementById("aantal_hersteld").innerText = recovered;
 });
 
 getDeathsCases().then(death => {
-    document.getElementById("death_cases").innerText = death
+    document.getElementById("aantal_overleden").innerText = death
 })
 
 // Regio-grafiek
 async function drawRegioChart() {
     let actieveGevallen = 0;
     let hersteldeGevallen = 0;
+    let sterfGevallen = death;
 
     const regioTelling = {
         'Brussel': 0,
@@ -93,9 +94,11 @@ async function drawRegioChart() {
     // Toon statistieken in HTML 
     const actief = document.getElementById("aantal_actieve");
     const hersteld = document.getElementById("aantal_hersteld");
+    const sterf = document.getElementById("aantal_overleden");
 
     if (actief) actief.innerText = actieveGevallen;
     if (hersteld) hersteld.innerText = hersteldeGevallen;
+    if (sterf) sterf.innerText = sterfGevallen;
 
     // Regiogebaseerde grafiek tekenen
     const ctx = document.getElementById('regioChart').getContext('2d');
