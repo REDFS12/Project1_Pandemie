@@ -12,7 +12,8 @@ async function loadMeldingen() {
             const data = docSnap.data();
             const row = document.createElement('tr');
 
-            // Voeg de gegevens uit de document toe aan de rij
+            const buttonLabel = data.gestorven ? 'Markeer als niet gestorven' : 'Markeer als gestorven';
+
             row.innerHTML = `
                 <td>${data.ingaveDatum}</td>
                 <td>${data.regio}</td>
@@ -20,8 +21,13 @@ async function loadMeldingen() {
                 <td>${data.geslacht}</td>
                 <td>${data.virusType}</td>
                 <td>${data.statusVaccinatie}</td>
-                <td><button class="death-button" data-id="${docSnap.id}">${data.gestorven ? 'Gestorven' : 'Markeer als gestorven'}</button></td>
+                <td>
+                    <button class="death-button" data-id="${docSnap.id}" data-status="${data.gestorven}">
+                        ${buttonLabel}
+                    </button>
+                </td>
             `;
+
             tableBody.appendChild(row);
         });
 
@@ -35,24 +41,27 @@ async function loadMeldingen() {
     }
 }
 
-// Functie om de "gestorven" status bij te werken wanneer de knop wordt aangeklikt
+// Functie om de "gestorven" status te togglen wanneer de knop wordt aangeklikt
 async function handleDeathClick(e) {
-    const docId = e.target.getAttribute('data-id'); // Haal de document-ID op
+    const button = e.target;
+    const docId = button.getAttribute('data-id');
+    const huidigeStatus = button.getAttribute('data-status') === 'true';
+
+    const nieuweStatus = !huidigeStatus;
+
     try {
         const docRef = doc(db, "Variabelen-geinfecteerden", docId);
-
-        // Update de gestorven status naar true
         await updateDoc(docRef, {
-            gestorven: true
+            gestorven: nieuweStatus
         });
 
-        // Werk de knop bij in de tabel
-        e.target.innerText = "Gestorven";
-        e.target.disabled = true; // Zet de knop uit zodat je niet meerdere keren kunt klikken
+        // Update knoplabel en data-status
+        button.innerText = nieuweStatus ? "Markeer als niet gestorven" : "Markeer als gestorven";
+        button.setAttribute('data-status', nieuweStatus);
 
-        console.log("Document succesvol bijgewerkt!");
+        console.log("Gestorven-status succesvol aangepast.");
     } catch (err) {
-        console.error("Er is een fout opgetreden bij het updaten van het document:", err);
+        console.error("Fout bij updaten van status:", err);
     }
 }
 
