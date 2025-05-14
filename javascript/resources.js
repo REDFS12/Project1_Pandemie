@@ -1,18 +1,31 @@
 import { db } from './firebaseConfig.js';
 import { collection, getDocs, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
-// Functie om de tabel met meldingen te laden
 async function loadMeldingen() {
     try {
         const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
         const tableBody = document.querySelector('#meldingentabel tbody');
-        tableBody.innerHTML = ''; // Maak de tabel eerst leeg
+        tableBody.innerHTML = '';
 
         snapshot.forEach(docSnap => {
             const data = docSnap.data();
             const row = document.createElement('tr');
+            const gestorven = data.gestorven === true;
 
-            const buttonLabel = data.gestorven ? 'Markeer als niet gestorven' : 'Markeer als gestorven';
+            const button = document.createElement('button');
+            button.className = 'death-button';
+            button.dataset.id = docSnap.id;
+            button.dataset.status = gestorven;
+            button.innerText = gestorven ? 'Patient is gestorven' : 'Patient is levend';
+            button.style.backgroundColor = gestorven ? '#e74c3c' : '#2ecc71';
+            button.style.color = 'white';
+            button.style.border = 'none';
+            button.style.padding = '5px 10px';
+            button.style.cursor = 'pointer';
+            button.style.borderRadius = '5px';
+
+            const cell = document.createElement('td');
+            cell.appendChild(button);
 
             row.innerHTML = `
                 <td>${data.ingaveDatum}</td>
@@ -21,17 +34,11 @@ async function loadMeldingen() {
                 <td>${data.geslacht}</td>
                 <td>${data.virusType}</td>
                 <td>${data.statusVaccinatie}</td>
-                <td>
-                    <button class="death-button" data-id="${docSnap.id}" data-status="${data.gestorven}">
-                        ${buttonLabel}
-                    </button>
-                </td>
             `;
-
+            row.appendChild(cell);
             tableBody.appendChild(row);
         });
 
-        // Voeg event listeners toe aan alle death-knoppen
         document.querySelectorAll('.death-button').forEach(button => {
             button.addEventListener('click', handleDeathClick);
         });
@@ -41,12 +48,10 @@ async function loadMeldingen() {
     }
 }
 
-// Functie om de "gestorven" status te togglen wanneer de knop wordt aangeklikt
 async function handleDeathClick(e) {
     const button = e.target;
-    const docId = button.getAttribute('data-id');
-    const huidigeStatus = button.getAttribute('data-status') === 'true';
-
+    const docId = button.dataset.id;
+    const huidigeStatus = button.dataset.status === 'true';
     const nieuweStatus = !huidigeStatus;
 
     try {
@@ -55,15 +60,14 @@ async function handleDeathClick(e) {
             gestorven: nieuweStatus
         });
 
-        // Update knoplabel en data-status
-        button.innerText = nieuweStatus ? "Markeer als niet gestorven" : "Markeer als gestorven";
-        button.setAttribute('data-status', nieuweStatus);
+        button.innerText = nieuweStatus ? 'Patient is gestorven' : 'Patient is levend';
+        button.dataset.status = nieuweStatus;
+        button.style.backgroundColor = nieuweStatus ? '#e74c3c' : '#2ecc71';
 
-        console.log("Gestorven-status succesvol aangepast.");
+        console.log("Status succesvol aangepast.");
     } catch (err) {
-        console.error("Fout bij updaten van status:", err);
+        console.error("Fout bij bijwerken:", err);
     }
 }
 
-// Laad de meldingen wanneer de pagina wordt geladen
 window.onload = loadMeldingen;

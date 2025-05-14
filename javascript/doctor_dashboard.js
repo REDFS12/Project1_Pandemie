@@ -81,7 +81,7 @@ async function drawRegioChart() {
             regioTelling[regio]++;
         }
 
-        if (!data.genezingDatum) {
+        if (!data.genezingDatum || new Date(data.genezingDatum) > new Date()) {
             actieveGevallen++;
         }
 
