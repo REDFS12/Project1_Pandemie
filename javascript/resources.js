@@ -1,5 +1,6 @@
-import { db } from './firebaseConfig.js';
+import { db, auth } from './firebaseConfig.js';
 import { collection, getDocs, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
 async function loadMeldingen() {
     try {
@@ -70,4 +71,14 @@ async function handleDeathClick(e) {
     }
 }
 
-window.onload = loadMeldingen;
+// 🔐 Authenticatiecheck bij pagina laden
+onAuthStateChanged(auth, user => {
+    if (user) {
+        document.getElementById('protected-resources').style.display = 'block';
+        document.getElementById('not-logged-in-message').style.display = 'none';
+        loadMeldingen();
+    } else {
+        document.getElementById('protected-resources').style.display = 'none';
+        document.getElementById('not-logged-in-message').style.display = 'block';
+    }
+});

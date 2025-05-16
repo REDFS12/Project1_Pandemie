@@ -28,29 +28,36 @@
         <button data-lang="de">🇩🇪</button>
       </div>
         <main>
-            <section class="meldingen-sectie">
-                <h2>Overview of reports</h2>
-                <table id="meldingentabel">
-                    <thead>
-                        <tr>
-                            <th>Datum melding</th>
-                            <th>Regio</th>
-                            <th>Leeftijd</th>
-                            <th>Geslacht</th>
-                            <th>Virus Type</th>
-                            <th>Vaccinatie status</th>
-                            <th class="death-button" data-id="documentId">Sterf Geval</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       
-                    </tbody>
-                </table>
-                <p>
-                    Voor meer details van de meldingen kan je 
-                    <a href="/html/statistics.html">hier klikken</a>.
-                </p>
-            </section>
+           <!-- Bericht voor niet-ingelogde gebruikers -->
+<div id="not-logged-in-message" style="display: none; color: red; text-align: center; font-size: 18px;">
+  <p>Je bent niet ingelogd om deze informatie te bekijken. 
+     <a href="/html/login.html">Log hier in</a> om toegang te krijgen.</p>
+</div>
+
+<!-- Beschermde resources -->
+<div id="protected-resources" style="display: none;">
+    <section class="meldingen-sectie">
+        <h2>Overview of reports</h2>
+        <table id="meldingentabel">
+            <thead>
+                <tr>
+                    <th>Datum melding</th>
+                    <th>Regio</th>
+                    <th>Leeftijd</th>
+                    <th>Geslacht</th>
+                    <th>Virus Type</th>
+                    <th>Vaccinatie status</th>
+                    <th class="death-button" data-id="documentId">Sterf Geval</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <p>Voor meer details van de meldingen kan je 
+            <a href="/html/statistics.html">hier klikken</a>.
+        </p>
+    </section>
+</div>
+
         </main>
         <script type="module" src="/javascript/resources.js"></script>
         <script type="module" src="/javascript/resources_languages.js"></script>
