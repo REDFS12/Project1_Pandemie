@@ -65,7 +65,8 @@ getDeathsCases().then(death => {
 async function drawRegioChart() {
     let actieveGevallen = 0;
     let hersteldeGevallen = 0;
-    let sterfGevallen = death;
+    let sterfGevallen = 0;
+    
 
     const regioTelling = {
         'Brussel': 0,
@@ -88,6 +89,11 @@ async function drawRegioChart() {
 
         if (data.genezingDatum) {
             hersteldeGevallen++;
+        }
+
+        if(data.gestorven == true){
+            sterfGevallen ++;
+
         }
     });
 
