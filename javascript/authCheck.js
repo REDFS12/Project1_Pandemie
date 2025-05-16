@@ -1,11 +1,27 @@
+
 import { auth } from './firebaseConfig.js';
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+const authButton = document.getElementById('auth-button');
 
 onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    // Gebruiker is NIET ingelogd → stuurt naar login
-    window.location.href = '/html/login.html';
+  if (user) {
+    // Ingelogd → Toon "Log uit"
+    authButton.innerHTML = `<a href="#" id="logout-link">Log uit</a>`;
+    
+    document.getElementById('logout-link').addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        await signOut(auth);
+        window.location.href = '/html/login.html'; // redirect na uitloggen
+      } catch (err) {
+        console.error("Fout bij uitloggen:", err);
+      }
+    });
+
   } else {
-    console.log("Gebruiker is ingelogd:", user.email);
+    // Niet ingelogd → Toon "Inloggen"
+    authButton.innerHTML = `<a href="/html/login.html">Inloggen</a>`;
   }
 });
+

@@ -43,7 +43,8 @@ loginForm.addEventListener('submit', async (e) => {
 
   } catch (error) {
     console.error('Error during login:', error.code, error.message);
-    alert('Geen login teruggevonden in de data: ' + error.message);
+    alert('Login mislukt. Controleer je e-mailadres of wachtwoord.');
+
   }
 });
 
