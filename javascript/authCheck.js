@@ -21,7 +21,7 @@ onAuthStateChanged(auth, (user) => {
 
   } else {
     // Niet ingelogd → Toon "Inloggen"
-    authButton.innerHTML = `<a href="/html/login.html">Inloggen</a>`;
+    authButton.innerHTML = `<a href="/html/login.html">Sign in</a>`;
   }
 });
 
