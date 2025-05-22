@@ -2,7 +2,7 @@ import { db, auth } from './firebaseConfig.js';
 import { collection, getDocs, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
-async function loadMeldingen() {
+async function loadReports() {
     try {
         const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
         const tableBody = document.querySelector('#meldingentabel tbody');
@@ -11,14 +11,14 @@ async function loadMeldingen() {
         snapshot.forEach(docSnap => {
             const data = docSnap.data();
             const row = document.createElement('tr');
-            const gestorven = data.gestorven === true;
+            const deceased = data.gestorven === true;
 
             const button = document.createElement('button');
             button.className = 'death-button';
             button.dataset.id = docSnap.id;
-            button.dataset.status = gestorven;
-            button.innerText = gestorven ? 'Patient is gestorven' : 'Patient is levend';
-            button.style.backgroundColor = gestorven ? '#e74c3c' : '#2ecc71';
+            button.dataset.status = deceased;
+            button.innerText = deceased ? 'Patient is deceased' : 'Patient is alive';
+            button.style.backgroundColor = deceased ? '#e74c3c' : '#2ecc71';
             button.style.color = 'white';
             button.style.border = 'none';
             button.style.padding = '5px 10px';
@@ -45,38 +45,38 @@ async function loadMeldingen() {
         });
 
     } catch (err) {
-        console.error("Fout bij het ophalen van meldingen:", err);
+        console.error("Error fetching reports:", err);
     }
 }
 
 async function handleDeathClick(e) {
     const button = e.target;
     const docId = button.dataset.id;
-    const huidigeStatus = button.dataset.status === 'true';
-    const nieuweStatus = !huidigeStatus;
+    const currentStatus = button.dataset.status === 'true';
+    const newStatus = !currentStatus;
 
     try {
         const docRef = doc(db, "Variabelen-geinfecteerden", docId);
         await updateDoc(docRef, {
-            gestorven: nieuweStatus
+            gestorven: newStatus
         });
 
-        button.innerText = nieuweStatus ? 'Patient is gestorven' : 'Patient is levend';
-        button.dataset.status = nieuweStatus;
-        button.style.backgroundColor = nieuweStatus ? '#e74c3c' : '#2ecc71';
+        button.innerText = newStatus ? 'Patient is deceased' : 'Patient is alive';
+        button.dataset.status = newStatus;
+        button.style.backgroundColor = newStatus ? '#e74c3c' : '#2ecc71';
 
-        console.log("Status succesvol aangepast.");
+        console.log("Status updated successfully.");
     } catch (err) {
-        console.error("Fout bij bijwerken:", err);
+        console.error("Error updating status:", err);
     }
 }
 
-// 🔐 Authenticatiecheck bij pagina laden
+// 🔐 Authentication check on page load
 onAuthStateChanged(auth, user => {
     if (user) {
         document.getElementById('protected-resources').style.display = 'block';
         document.getElementById('not-logged-in-message').style.display = 'none';
-        loadMeldingen();
+        loadReports();
     } else {
         document.getElementById('protected-resources').style.display = 'none';
         document.getElementById('not-logged-in-message').style.display = 'block';

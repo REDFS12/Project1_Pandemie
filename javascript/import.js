@@ -1,18 +1,18 @@
 import { db } from './firebaseConfig.js';
 import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
-// Telt alle ingevulde formulieren = totaal aantal besmettingen
+// Counts all submitted forms = total number of infections
 export async function getTotalCases() {
   try {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
     return snapshot.size;
   } catch (err) {
-    console.error("Fout bij tellen van totaal gevallen:", err);
-    return "Fout";
+    console.error("Error counting total cases:", err);
+    return "Error";
   }
 }
 
-// Telt actieve gevallen: geen genezingDatum aanwezig
+// Counts active cases: no recoveryDate present
 export async function getActiveCases() {
   try {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
@@ -27,12 +27,12 @@ export async function getActiveCases() {
 
     return activeCount;
   } catch (err) {
-    console.error("Fout bij tellen van actieve gevallen:", err);
-    return "Fout";
+    console.error("Error counting active cases:", err);
+    return "Error";
   }
 }
 
-// Telt herstelde gevallen: genezingDatum is ingevuld
+// Counts recovered cases: recoveryDate is filled in
 export async function getRecoveredCases() {
   try {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
@@ -47,8 +47,8 @@ export async function getRecoveredCases() {
 
     return recoveredCount;
   } catch (err) {
-    console.error("Fout bij tellen van herstelde gevallen:", err);
-    return "Fout";
+    console.error("Error counting recovered cases:", err);
+    return "Error";
   }
 }
 
@@ -66,7 +66,7 @@ export async function getDeathsCases() {
 
     return deathCount;
   } catch (err) {
-    console.error("Fout bij tellen van de sterf gevallen:", err);
-    return "Fout";
+    console.error("Error counting death cases:", err);
+    return "Error";
   }
 }

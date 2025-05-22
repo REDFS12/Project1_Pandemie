@@ -31,85 +31,84 @@
     </div>
 <main>
     <section class="information">
-        <h2>Belangrijke informatie</h2>
+        <h2>Important Information</h2>
         <ul class="main-list">
-            <li>Totaal gevallen: <span id="total_cases"></span></li>
-            <li>Actieve gevallen: <span id="aantal_actieve"></span></li>
-            <li>Herstelde gevallen: <span id="aantal_hersteld"></span></li>
-            <li>Sterfgevallen: <span id="aantal_overleden"></span></li>
+            <li>Total cases: <span id="total_cases"></span></li>
+            <li>Active cases: <span id="aantal_actieve"></span></li>
+            <li>Recovered cases: <span id="aantal_hersteld"></span></li>
+            <li>Deaths: <span id="aantal_overleden"></span></li>
         </ul>
     </section>
-
 
 <hr>
 
 <section class="meldingen">
-    <h2>Nieuwe besmetting melden:</h2>
+    <h2>Report a new infection:</h2>
     <form id="besmetting-form">
         <div class="infoPersoon">
-            <label>Regio:
+            <label>Region:
                 <select id="regio">
-                    <option value="Brussel">Brussel</option>
-                    <option value="Vlaams-Brabant">Vlaams-Brabant</option>
-                    <option value="Antwerpen">Antwerpen</option>
+                    <option value="Brussel">Brussels</option>
+                    <option value="Vlaams-Brabant">Flemish Brabant</option>
+                    <option value="Antwerpen">Antwerp</option>
                 </select>
             </label><br>
 
-            <label>Werk Locatie:
+            <label>Work Location:
                 <input type="text" id="werkLocatie" required>
             </label><br>
 
-            <label>Leeftijd:
+            <label>Age:
                 <input type="number" id="leeftijd" required>
             </label><br>
 
-            <label>Grootte van het gezin:
+            <label>Household size:
                 <input type="number" id="gezinGrootte" required>
             </label><br>
 
-            <label>Geslacht:
+            <label>Gender:
                 <select id="geslacht">
-                    <option value="man">Man</option>
-                    <option value="vrouw">Vrouw</option>
+                    <option value="man">Male</option>
+                    <option value="vrouw">Female</option>
                 </select required>
             </label><br>
         </div>
 
         <div class="infoVirus">
-            <label>Type Virus:
+            <label>Virus type:
                 <select id="virusType" required> 
                     <option value="Covid">Covid</option>
-                    <option value="Grippe">Grippe</option>
+                    <option value="Grippe">Flu</option>
                     <option value="Malaria">Malaria</option>
                 </select>
             </label><br>
 
-            <label>Datum besmetting:
+            <label>Date of infection:
                 <input type="date" id="datumBesmetting" required>
             </label><br>
 
-            <label>Ingave Datum:
+            <label>Date of entry:
                 <input type="date" id="ingaveDatum" required>
             </label><br>
 
-            <label>Genezing Datum:
+            <label>Date of recovery:
                 <input type="date" id="genezingDatum">
             </label><br>
 
-            <label>Status vaccinatie:
+            <label>Vaccination status:
                 <select id="statusVaccinatie" required>
-                    <option value="gevaccineerd">Gevaccineerd</option>
-                    <option value="nietGevaccineerd">Niet gevaccineerd</option>
+                    <option value="gevaccineerd">Vaccinated</option>
+                    <option value="nietGevaccineerd">Not vaccinated</option>
                 </select>
             </label>
         </div> 
 
-        <button class="button" type="submit">Opslaan</button>
+        <button class="button" type="submit">Save</button>
     </form>
 </section>
 
 <section class="chartSection">
-    <h2>Besmettingen per Regio:</h2>
+    <h2>Infections per Region:</h2>
     <canvas id="regioChart" style="width: 300px; height: 300px;"></canvas>
 </section>
 

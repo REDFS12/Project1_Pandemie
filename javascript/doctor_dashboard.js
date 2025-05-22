@@ -2,49 +2,47 @@ import { db, auth } from './firebaseConfig.js';
 import { collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 import { getTotalCases, getActiveCases, getRecoveredCases, getDeathsCases } from './import.js';
 
-// Formulierverwerking
+// Form handling
 const form = document.getElementById('besmetting-form');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const regio = document.getElementById('regio').value;
-    const werkLocatie = document.getElementById('werkLocatie').value;
-    const leeftijd = parseInt(document.getElementById('leeftijd').value);
-    const gezinGrootte = parseInt(document.getElementById('gezinGrootte').value);
-    const geslacht = document.getElementById('geslacht').value;
+    const region = document.getElementById('regio').value;
+    const workLocation = document.getElementById('werkLocatie').value;
+    const age = parseInt(document.getElementById('leeftijd').value);
+    const householdSize = parseInt(document.getElementById('gezinGrootte').value);
+    const gender = document.getElementById('geslacht').value;
     const virusType = document.getElementById('virusType').value;
-    const datumBesmetting = document.getElementById('datumBesmetting').value;
-    const ingaveDatum = document.getElementById('ingaveDatum').value;
-    const genezingDatum = document.getElementById('genezingDatum').value;
-    const statusVaccinatie = document.getElementById('statusVaccinatie').value;
-
+    const infectionDate = document.getElementById('datumBesmetting').value;
+    const entryDate = document.getElementById('ingaveDatum').value;
+    const recoveryDate = document.getElementById('genezingDatum').value;
+    const vaccinationStatus = document.getElementById('statusVaccinatie').value;
 
     try {
         const user = auth.currentUser;
 
         await addDoc(collection(db, "Variabelen-geinfecteerden"), {
-            regio,
-            werkLocatie,
-            leeftijd,
-            gezinGrootte,
-            geslacht,
+            region,
+            workLocation,
+            age,
+            householdSize,
+            gender,
             virusType,
-            datumBesmetting,
-            ingaveDatum,
-            genezingDatum,
-            statusVaccinatie,
-            
-            dokterId: user.email,
+            infectionDate,
+            entryDate,
+            recoveryDate,
+            vaccinationStatus,
+            doctorId: user.email,
         });
 
         form.reset();
     } catch (err) {
-        console.error("Fout bij opslaan:", err);
+        console.error("Error saving:", err);
     }
 });
 
-// Statistieken bijwerken
+// Update statistics
 getTotalCases().then(total => {
     document.getElementById("total_cases").innerText = total;
 });
@@ -61,14 +59,13 @@ getDeathsCases().then(death => {
     document.getElementById("aantal_overleden").innerText = death
 })
 
-// Regio-grafiek
-async function drawRegioChart() {
-    let actieveGevallen = 0;
-    let hersteldeGevallen = 0;
-    let sterfGevallen = 0;
-    
+// Region chart
+async function drawRegionChart() {
+    let activeCases = 0;
+    let recoveredCases = 0;
+    let deathCases = 0;
 
-    const regioTelling = {
+    const regionCount = {
         'Brussel': 0,
         'Vlaams-Brabant': 0,
         'Antwerpen': 0
@@ -77,44 +74,43 @@ async function drawRegioChart() {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
     snapshot.forEach(doc => {
         const data = doc.data();
-        const regio = data.regio;
+        const region = data.regio;
 
-        if (regioTelling.hasOwnProperty(regio)) {
-            regioTelling[regio]++;
+        if (regionCount.hasOwnProperty(region)) {
+            regionCount[region]++;
         }
 
         if (!data.genezingDatum || new Date(data.genezingDatum) > new Date()) {
-            actieveGevallen++;
+            activeCases++;
         }
 
         if (data.genezingDatum) {
-            hersteldeGevallen++;
+            recoveredCases++;
         }
 
-        if(data.gestorven == true){
-            sterfGevallen ++;
-
+        if (data.gestorven == true) {
+            deathCases++;
         }
     });
 
-    // Toon statistieken in HTML 
-    const actief = document.getElementById("aantal_actieve");
-    const hersteld = document.getElementById("aantal_hersteld");
-    const sterf = document.getElementById("aantal_overleden");
+    // Show statistics in HTML 
+    const active = document.getElementById("aantal_actieve");
+    const recovered = document.getElementById("aantal_hersteld");
+    const death = document.getElementById("aantal_overleden");
 
-    if (actief) actief.innerText = actieveGevallen;
-    if (hersteld) hersteld.innerText = hersteldeGevallen;
-    if (sterf) sterf.innerText = sterfGevallen;
+    if (active) active.innerText = activeCases;
+    if (recovered) recovered.innerText = recoveredCases;
+    if (death) death.innerText = deathCases;
 
-    // Regiogebaseerde grafiek tekenen
+    // Draw region-based chart
     const ctx = document.getElementById('regioChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: Object.keys(regioTelling),
+            labels: Object.keys(regionCount),
             datasets: [{
-                label: 'Aantal meldingen in de regio',
-                data: Object.values(regioTelling),
+                label: 'Number of reports in the region',
+                data: Object.values(regionCount),
                 backgroundColor: ['#3b82f6', '#f97316', '#facc15'],
                 borderRadius: 8
             }]
@@ -133,7 +129,7 @@ async function drawRegioChart() {
     });
 }
 
-drawRegioChart();
+drawRegionChart();
 
 // localStorage
 document.querySelectorAll('.language-buttons button').forEach(button => {

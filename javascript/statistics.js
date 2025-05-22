@@ -1,56 +1,55 @@
 import { db } from './firebaseConfig.js';
 import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
-// Functie om gegevens op te halen van Firestore
+// Function to fetch data from Firestore
 async function getStatisticsData() {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
-    const dataPerRegio = {
-        'Brussel': { cases: 0, active: 0, recovered: 0, death: 0, leeftijden: [], virusTypes: {} },
-        'Vlaams-Brabant': { cases: 0, active: 0, recovered: 0, death: 0, leeftijden: [], virusTypes: {} },
-        'Antwerpen': { cases: 0, active: 0, recovered: 0, death: 0, leeftijden: [], virusTypes: {} }
+    const dataPerRegion = {
+        'Brussel': { cases: 0, active: 0, recovered: 0, death: 0, ages: [], virusTypes: {} },
+        'Vlaams-Brabant': { cases: 0, active: 0, recovered: 0, death: 0, ages: [], virusTypes: {} },
+        'Antwerpen': { cases: 0, active: 0, recovered: 0, death: 0, ages: [], virusTypes: {} }
     };
 
     snapshot.forEach(doc => {
         const data = doc.data();
-        const regio = data.regio;
+        const region = data.regio;
         const isActive = !data.genezingDatum;
         const isRecovered = !!data.genezingDatum;
         const isDeath = data.gestorven;
 
-
-        if (dataPerRegio.hasOwnProperty(regio)) {
-            dataPerRegio[regio].cases++;
-            if (isActive) dataPerRegio[regio].active++;
-            if (isRecovered) dataPerRegio[regio].recovered++;
-            if(isDeath) dataPerRegio[regio].death++;
+        if (dataPerRegion.hasOwnProperty(region)) {
+            dataPerRegion[region].cases++;
+            if (isActive) dataPerRegion[region].active++;
+            if (isRecovered) dataPerRegion[region].recovered++;
+            if (isDeath) dataPerRegion[region].death++;
 
             if (data.leeftijd) {
-                dataPerRegio[regio].leeftijden.push(data.leeftijd);
+                dataPerRegion[region].ages.push(data.leeftijd);
             }
 
             if (data.virusType) {
                 const vt = data.virusType;
-                if (!dataPerRegio[regio].virusTypes[vt]) {
-                    dataPerRegio[regio].virusTypes[vt] = 0;
+                if (!dataPerRegion[region].virusTypes[vt]) {
+                    dataPerRegion[region].virusTypes[vt] = 0;
                 }
-                dataPerRegio[regio].virusTypes[vt]++;
+                dataPerRegion[region].virusTypes[vt]++;
             }
         }
     });
 
-    return dataPerRegio;
+    return dataPerRegion;
 }
 
-// Tabel updaten
-function updateStatisticsTable(dataPerRegio) {
+// Update table
+function updateStatisticsTable(dataPerRegion) {
     const tableBody = document.querySelector('#statistics-table tbody');
     tableBody.innerHTML = '';
 
-    Object.keys(dataPerRegio).forEach(regio => {
-        const data = dataPerRegio[regio];
+    Object.keys(dataPerRegion).forEach(region => {
+        const data = dataPerRegion[region];
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${regio}</td>
+            <td>${region}</td>
             <td>${data.cases}</td>
             <td>${data.active}</td>
             <td>${data.recovered}</td>
@@ -61,13 +60,13 @@ function updateStatisticsTable(dataPerRegio) {
 }
 
 // Grafiek met totale, actieve en herstelde gevallen
-function updateChart(dataPerRegio) {
+function updateChart(dataPerRegion) {
     const ctx = document.getElementById('statisticsChart').getContext('2d');
-    const labels = Object.keys(dataPerRegio);
-    const casesData = labels.map(regio => dataPerRegio[regio].cases);
-    const activeData = labels.map(regio => dataPerRegio[regio].active);
-    const recoveredData = labels.map(regio => dataPerRegio[regio].recovered);
-    const deathData = labels.map(regio => dataPerRegio[regio].death);
+    const labels = Object.keys(dataPerRegion);
+    const casesData = labels.map(region => dataPerRegion[region].cases);
+    const activeData = labels.map(region => dataPerRegion[region].active);
+    const recoveredData = labels.map(region => dataPerRegion[region].recovered);
+    const deathData = labels.map(region => dataPerRegion[region].death);
 
     new Chart(ctx, {
         type: 'bar',
@@ -119,29 +118,29 @@ function updateChart(dataPerRegio) {
 // Regio-filterknop
 document.getElementById('filter-knop').addEventListener('click', async () => {
     const selectedRegio = document.getElementById('filter-regio').value;
-    const dataPerRegio = await getStatisticsData();
+    const dataPerRegion = await getStatisticsData();
 
     if (selectedRegio !== 'all') {
-        Object.keys(dataPerRegio).forEach(regio => {
-            if (regio !== selectedRegio) {
-                delete dataPerRegio[regio];
+        Object.keys(dataPerRegion).forEach(region => {
+            if (region !== selectedRegio) {
+                delete dataPerRegion[region];
             }
         });
     }
 
-    updateStatisticsTable(dataPerRegio);
-    updateChart(dataPerRegio);
-    updateLeeftijdChart(dataPerRegio);
-    updateVirusTypeChart(dataPerRegio);
+    updateStatisticsTable(dataPerRegion);
+    updateChart(dataPerRegion);
+    updateLeeftijdChart(dataPerRegion);
+    updateVirusTypeChart(dataPerRegion);
 });
 
 // Gemiddelde leeftijden grafiek
-function updateLeeftijdChart(dataPerRegio) {
+function updateLeeftijdChart(dataPerRegion) {
     const ctx = document.getElementById('leeftijdChart').getContext('2d');
-    const labels = Object.keys(dataPerRegio);
+    const labels = Object.keys(dataPerRegion);
 
-    const gemiddeldeLeeftijden = labels.map(regio => {
-        const leeftijden = dataPerRegio[regio].leeftijden;
+    const gemiddeldeLeeftijden = labels.map(region => {
+        const leeftijden = dataPerRegion[region].ages;
         const som = leeftijden.reduce((a, b) => a + b, 0);
         return leeftijden.length ? (som / leeftijden.length).toFixed(1) : 0;
     });
@@ -168,11 +167,11 @@ function updateLeeftijdChart(dataPerRegio) {
 }
 
 // Virus type per regio grafiek
-function updateVirusTypeChart(dataPerRegio) {
+function updateVirusTypeChart(dataPerRegion) {
     const ctx = document.getElementById('virusChart').getContext('2d');
     
     const virusTypes = ['Covid', 'Grippe', 'Malaria'];
-    const regioNamen = Object.keys(dataPerRegio);
+    const regioNamen = Object.keys(dataPerRegion);
 
     const regioKleuren = {
         'Brussel': 'blue',
@@ -180,10 +179,10 @@ function updateVirusTypeChart(dataPerRegio) {
         'Antwerpen': 'green'        
     };
 
-    const datasets = regioNamen.map(regio => ({
-        label: regio,
-        data: virusTypes.map(virus => dataPerRegio[regio].virusTypes[virus] || 0),
-        backgroundColor: regioKleuren[regio] || '#95a5a6'
+    const datasets = regioNamen.map(region => ({
+        label: region,
+        data: virusTypes.map(virus => dataPerRegion[region].virusTypes[virus] || 0),
+        backgroundColor: regioKleuren[region] || '#95a5a6'
     }));
 
     new Chart(ctx, {
@@ -215,11 +214,11 @@ function updateVirusTypeChart(dataPerRegio) {
 
 // Initialisatie
 window.addEventListener('DOMContentLoaded', async () => {
-    const dataPerRegio = await getStatisticsData();
-    updateStatisticsTable(dataPerRegio);
-    updateChart(dataPerRegio);
-    updateLeeftijdChart(dataPerRegio);
-    updateVirusTypeChart(dataPerRegio);
+    const dataPerRegion = await getStatisticsData();
+    updateStatisticsTable(dataPerRegion);
+    updateChart(dataPerRegion);
+    updateLeeftijdChart(dataPerRegion);
+    updateVirusTypeChart(dataPerRegion);
 });
 
 // localStorage

@@ -33,22 +33,21 @@ loginForm.addEventListener('submit', async (e) => {
 
       console.log('User role from Firestore:', userRole);
 
-      
       if (userRole === "dokter") {
-        window.location.href = '/html/doctor_dashboard.html';
+        window.location.href = '/html/doctor_dashboardEN.html';
       } else {
-        alert('Onbekende rol in Firestore.');
+        alert('Unknown role in Firestore.');
       }
     }
 
   } catch (error) {
     console.error('Error during login:', error.code, error.message);
-    alert('Login mislukt. Controleer je e-mailadres of wachtwoord.');
+    alert('Login failed. Check your email address or password.');
 
   }
 });
 
-// localStorage voor taalkeuze
+// localStorage for language choice
 document.querySelectorAll('.language-buttons button').forEach(button => {
   button.addEventListener('click', () => {
     const lang = button.getAttribute('data-lang');

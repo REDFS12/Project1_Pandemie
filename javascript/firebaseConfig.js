@@ -16,13 +16,13 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Zorg dat sessie lokaal blijft bewaard
+// Make sure session is stored locally
 setPersistence(auth, browserLocalPersistence)
   .then(() => {
-    console.log("Authenticatie-persistentie ingesteld op localStorage");
+    console.log("Authentication persistence set to localStorage");
   })
   .catch((error) => {
-    console.error("Fout bij het instellen van persistentie:", error);
+    console.error("Error setting persistence:", error);
   });
 
 export { auth, db };
