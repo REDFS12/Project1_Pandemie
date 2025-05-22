@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord Médecin - Moniteur de la Pandémie Belge</title>
+    <link rel="stylesheet" href="/css/style_doctor_dashboard.css">
+    <!-- Chart.js import -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<section class="headerSection">
+    <!-- Navigation bar -->
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardFR.html">Accueil</a></li>
+                <li><a href="/html/aboutFR.html">À propos</a></li>
+                <li><a href="/html/resourcesFR.html">Ressources</a></li>
+                <li><a href="/html/statisticsFR.html">Statistiques</a></li>
+                <li id="auth-button"></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="language-buttons">
+        <a href="doctor_dashboardEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="doctor_dashboardNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="doctor_dashboardFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="doctor_dashboardDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+<main>
+    <section class="information">
+        <h2>Informations importantes</h2>
+        <ul class="main-list">
+            <li>Nombre total de cas : <span id="total_cases"></span></li>
+            <li>Cas actifs : <span id="aantal_actieve"></span></li>
+            <li>Cas guéris : <span id="aantal_hersteld"></span></li>
+            <li>Décès : <span id="aantal_overleden"></span></li>
+        </ul>
+    </section>
+
+<hr>
+
+<section class="meldingen">
+    <h2>Signaler une nouvelle infection :</h2>
+    <form id="besmetting-form">
+        <div class="infoPersoon">
+            <label>Région :
+                <select id="regio">
+                    <option value="Brussel">Bruxelles</option>
+                    <option value="Vlaams-Brabant">Brabant flamand</option>
+                    <option value="Antwerpen">Anvers</option>
+                </select>
+            </label><br>
+
+            <label>Lieu de travail :
+                <input type="text" id="werkLocatie" required>
+            </label><br>
+
+            <label>Âge :
+                <input type="number" id="leeftijd" required>
+            </label><br>
+
+            <label>Taille du ménage :
+                <input type="number" id="gezinGrootte" required>
+            </label><br>
+
+            <label>Sexe :
+                <select id="geslacht">
+                    <option value="man">Homme</option>
+                    <option value="vrouw">Femme</option>
+                </select required>
+            </label><br>
+        </div>
+
+        <div class="infoVirus">
+            <label>Type de virus :
+                <select id="virusType" required> 
+                    <option value="Covid">Covid</option>
+                    <option value="Grippe">Grippe</option>
+                    <option value="Malaria">Malaria</option>
+                </select>
+            </label><br>
+
+            <label>Date d'infection :
+                <input type="date" id="datumBesmetting" required>
+            </label><br>
+
+            <label>Date d'enregistrement :
+                <input type="date" id="ingaveDatum" required>
+            </label><br>
+
+            <label>Date de guérison :
+                <input type="date" id="genezingDatum">
+            </label><br>
+
+            <label>Statut vaccinal :
+                <select id="statusVaccinatie" required>
+                    <option value="gevaccineerd">Vacciné</option>
+                    <option value="nietGevaccineerd">Non vacciné</option>
+                </select>
+            </label>
+        </div> 
+
+        <button class="button" type="submit">Enregistrer</button>
+    </form>
+</section>
+
+<section class="chartSection">
+    <h2>Infections par région :</h2>
+    <canvas id="regioChart" style="width: 300px; height: 300px;"></canvas>
+</section>
+
+</main>
+
+<script type="module" src="/javascript/doctor_dashboard.js"></script>
+<script type="module" src="/javascript/import.js"></script>
+<script type="module" src="/javascript/doctor_language.js"></script>
+<script type="module" src="/javascript/authCheck.js"></script>
+
+<footer>
+    <p>&copy; 2025 Moniteur de la Pandémie Belge. Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - Belgian Pandemic Monitor </title>
+    <link rel="stylesheet" href="/css/style_statistics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Voor de grafieken -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body>
+
+<header class="nav">
+    <nav>
+        <ul class="nav-list">
+            <li><a href="/html/dashboardEN.html">Home</a></li>
+            <li><a href="/html/aboutEN.html">About</a></li>
+            <li><a href="/html/resourcesEN.html">Resources</a></li>
+            <li><a href="/html/statisticsEN.html">Statistics</a></li>
+            <li id="auth-button"></li>
+
+        </ul>
+    </nav>
+</header>
+    <div class="language-buttons">
+        <a href="statisticsEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="statisticsNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="statisticsFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="statisticsDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+<main>
+    <section class="statistics">
+        <h2>Statistics Overview</h2>
+
+        <!-- Filters -->
+        <div class="filters">
+            <label for="filter-regio">Regio:</label>
+            <select id="filter-regio">
+                <option value="all">Alle regio's</option>
+                <option value="Brussel">Brussel</option>
+                <option value="Vlaams-Brabant">Vlaams-Brabant</option>
+                <option value="Antwerpen">Antwerpen</option>
+            </select>
+            <button id="filter-knop">Filter toepassen</button>
+        </div>
+
+        <!-- Table with statistics -->
+        <h3>View per Regio</h3>
+        <table id="statistics-table">
+            <thead>
+                <tr>
+                    <th>Regio</th>
+                    <th>Totale gevallen</th>
+                    <th>Actieve gevallen</th>
+                    <th>Herstelde gevallen</th>
+                    <th>Sterfgevallen</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+
+    
+        <div class="grafiek-container">
+            <canvas id="statisticsChart" width="300" height="200"></canvas>
+            <canvas id="leeftijdChart" width="300" height="200"></canvas>
+            <canvas id="virusChart" width="300" height="200"></canvas>
+        </div>
+        
+
+    </section>
+</main>
+
+<script type="module" src="/javascript/statistics.js"></script>
+<script type="module" src="/javascript/statistics_language.js"></script>
+<script type="module" src="/javascript/highlight_active_page.js"></script>
+<script type="module" src="/javascript/authCheck.js"></script>
+
+
+</body>
+<footer>
+    <p>&copy; 2025 Belgian Pandemic Monitor. Alle rechten voorbehouden.</p>
+</footer>
+</html>

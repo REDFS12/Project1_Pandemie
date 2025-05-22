@@ -1,3 +1,5 @@
+/*
+
 const translations = {
     en: {
         importantInfo: "Important Information",

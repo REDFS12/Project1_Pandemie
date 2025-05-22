@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Belgische Pandemie Monitor</title>
+    <link rel="stylesheet" href="/css/style_dashboard.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+</head>
+<body class="page-container">
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardNL.html">Home</a></li>
+                <li><a href="/html/aboutNL.html">Over</a></li>
+                <li><a href="/html/resourcesNL.html">Bronnen</a></li>
+                <li><a href="/html/statisticsNL.html">Statistieken</a></li>
+                <li id="auth-button"></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="language-buttons">
+        <a href="dashboardEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="dashboardNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="dashboardFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="dashboardDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+    <main class="main-content">
+        <h1>Welkom bij de Belgische Pandemie Monitor</h1>
+        <p>Bekijk de actuele cijfers over virale infecties in België en meer</p>
+
+        <section class="information">
+            <h2>Gevallen</h2>
+            <ul class="main-list">
+                <li>Totaal gevallen:<span id="total_cases"></span></li>
+                <li>Actieve gevallen: <span id="active_cases"></span></li>
+                <li>Herstelde gevallen: <span id="recovered_cases"></span></li>
+                <li>Sterfgevallen: <span id="death_cases"></span></li>
+            </ul>
+        </section>
+        <hr>
+
+        <section class="info-virus">
+            <h2>Over de Virussen</h2>
+        
+            <div class="covid-home">
+                <h3>Covid (COVID-19)</h3>
+                <p><strong>Volledige naam:</strong> Coronavirusziekte 2019</p>
+                <p><strong>Verwekkende stof:</strong> SARS-CoV-2 (een coronavirus)</p>
+                <p><strong>Verspreiding:</strong> Via druppels in de lucht (hoesten, niezen, praten)</p>
+                <p><strong>Symptomen:</strong> Koorts, hoesten, vermoeidheid, ademhalingsproblemen, verlies van smaak/geur</p>
+                <p><strong>Preventie:</strong> Vaccinatie, handen wassen, mondmasker dragen, ventilatie</p>
+                <p><strong>Ernst:</strong> Kan mild tot ernstig zijn, vooral gevaarlijk voor ouderen en mensen met onderliggende aandoeningen</p>
+            </div>
+            <hr>
+        
+            <div class="griep-home">
+                <h3>Seizoensgriep</h3>
+                <p><strong>Volledige naam:</strong> Influenza</p>
+                <p><strong>Verwekkende stof:</strong> Influenzavirus (meestal type A of B)</p>
+                <p><strong>Verspreiding:</strong> Via speekseldruppels (hoesten, niezen)</p>
+                <p><strong>Symptomen:</strong> Hoge koorts, rillingen, spierpijn, vermoeidheid, droge hoest</p>
+                <p><strong>Preventie:</strong> Jaarlijkse griepprik, goede hygiëne</p>
+                <p><strong>Ernst:</strong> Meestal mild, maar kan bij kwetsbare groepen tot complicaties leiden</p>
+            </div>
+            <hr>
+        
+            <div class="malaria-home">
+                <h3>Malaria</h3>
+                <p><strong>Verwekkende stof:</strong> Plasmodium-parasiet, overgedragen door muggenbeten (Anopheles-mug)</p>
+                <p><strong>Verspreiding:</strong> Niet van mens tot mens, alleen via muggen</p>
+                <p><strong>Symptomen:</strong> Koorts, rillingen, zweten, hoofdpijn, misselijkheid</p>
+                <p><strong>Preventie:</strong> Muggenwerende middelen, klamboes, malariamedicatie</p>
+                <p><strong>Ernst:</strong> Zonder behandeling kan het fataal zijn, vooral in tropische gebieden</p>
+            </div>
+            <hr>
+        
+            <p><strong id="details-link">Voor meer details van alle gevallen kan je op 
+                <a href="/html/statisticsNL.html">STATISTIEKEN</a> klikken.</strong>
+            </p>
+        </section>
+    </main>
+
+    <script type="module" src="/javascript/dashboard.js"></script>
+    <script type="module" src="/javascript/import.js"></script>
+    <script type="module" src="/javascript/dashboard_language.js"></script>
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
+    <script type="module" src="/javascript/authCheck.js"></script>
+
+    <footer>
+        <p>&copy; 2025 Belgische Pandemie Monitor. Alle rechten voorbehouden.</p>
+    </footer>
+</body>
+</html>

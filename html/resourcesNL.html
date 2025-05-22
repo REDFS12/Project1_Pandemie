@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bronnen - Belgische Pandemie Monitor</title>
+    <link rel="stylesheet" href="/css/style_resource.css">
+</head>
+<body>
+
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardNL.html">Home</a></li>
+                <li><a href="/html/aboutNL.html">Over</a></li>
+                <li><a href="/html/resourcesNL.html">Bronnen</a></li>
+                <li><a href="/html/statisticsNL.html">Statistieken</a></li>
+                <li id="auth-button"></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="language-buttons">
+        <a href="resourcesEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="resourcesNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="resourcesFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="resourcesDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+    <main>
+        <!-- Bericht voor niet-ingelogde gebruikers -->
+        <div id="not-logged-in-message" style="display: none; color: red; text-align: center; font-size: 18px;">
+            <p>Je bent niet ingelogd om deze informatie te bekijken. 
+                <a href="/html/loginNL.html">Log hier in</a> om toegang te krijgen.</p>
+        </div>
+
+        <!-- Beschermde resources -->
+        <div id="protected-resources" style="display: none;">
+            <section class="meldingen-sectie">
+                <h2>Overzicht van meldingen</h2>
+                <table id="meldingentabel">
+                    <thead>
+                        <tr>
+                            <th>Datum melding</th>
+                            <th>Regio</th>
+                            <th>Leeftijd</th>
+                            <th>Geslacht</th>
+                            <th>Virus type</th>
+                            <th>Vaccinatiestatus</th>
+                            <th class="death-button" data-id="documentId">Sterfgeval</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <p>Voor meer details van de meldingen kan je 
+                    <a href="/html/statisticsNL.html">hier klikken</a>.
+                </p>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="/javascript/resources.js"></script>
+    <script type="module" src="/javascript/resources_languages.js"></script>
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
+
+    <p id="datetime">Huidige tijd:<span id="time"></span></p>
+
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const currentDateTime = now.toLocaleString();
+        document.querySelector('#time').textContent = currentDateTime;
+      }
+      setInterval(updateDateTime, 1000);
+    </script>
+
+    <p class="timestamp" id="timestamp">Pagina geladen op: </p>
+
+    <script>
+      window.addEventListener('load', () => {
+        const timestampElement = document.getElementById('timestamp');
+        const now = new Date();
+        const formatted = now.toLocaleString();
+        timestampElement.textContent += formatted;
+      });
+    </script>
+
+    <script type="module" src="/javascript/authCheck.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Belgische Pandemie Monitor. Alle rechten voorbehouden.</p>
+</footer>
+</html>

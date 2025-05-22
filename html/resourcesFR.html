@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources - Moniteur de la Pandémie Belge</title>
+    <link rel="stylesheet" href="/css/style_resource.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardFR.html">Accueil</a></li>
+                <li><a href="/html/aboutFR.html">À propos</a></li>
+                <li><a href="/html/resourcesFR.html">Ressources</a></li>
+                <li><a href="/html/statisticsFR.html">Statistiques</a></li>
+                <li id="auth-button"></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="language-buttons">
+        <a href="resourcesEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="resourcesNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="resourcesFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="resourcesDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+    <main>
+        <!-- Message for not logged in users -->
+        <div id="not-logged-in-message" style="display: none; color: red; text-align: center; font-size: 18px;">
+            <p>Vous n'êtes pas connecté pour voir ces informations.
+                <a href="/html/loginFR.html">Connectez-vous ici</a> pour accéder.</p>
+        </div>
+
+        <!-- Protected resources -->
+        <div id="protected-resources" style="display: none;">
+            <section class="meldingen-sectie">
+                <h2>Vue d'ensemble des signalements</h2>
+                <table id="meldingentabel">
+                    <thead>
+                        <tr>
+                            <th>Date du signalement</th>
+                            <th>Région</th>
+                            <th>Âge</th>
+                            <th>Sexe</th>
+                            <th>Type de virus</th>
+                            <th>Statut vaccinal</th>
+                            <th class="death-button" data-id="documentId">Décès</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <p>Pour plus de détails sur les signalements, cliquez 
+                    <a href="/html/statisticsFR.html">ici</a>.
+                </p>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="/javascript/resources.js"></script>
+    <script type="module" src="/javascript/resources_languages.js"></script>
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
+
+    <p id="datetime">Heure actuelle :<span id="time"></span></p>
+
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const currentDateTime = now.toLocaleString();
+        document.querySelector('#time').textContent = currentDateTime;
+      }
+      setInterval(updateDateTime, 1000);
+    </script>
+
+    <p class="timestamp" id="timestamp">Page chargée à : </p>
+
+    <script>
+      window.addEventListener('load', () => {
+        const timestampElement = document.getElementById('timestamp');
+        const now = new Date();
+        const formatted = now.toLocaleString();
+        timestampElement.textContent += formatted;
+      });
+    </script>
+
+    <script type="module" src="/javascript/authCheck.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Moniteur de la Pandémie Belge. Tous droits réservés.</p>
+</footer>
+</html>

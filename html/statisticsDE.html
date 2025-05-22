@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiken - Belgischer Pandemie-Monitor</title>
+    <link rel="stylesheet" href="/css/style_statistics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For charts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+</head>
+<body>
+<!-- Navigation bar -->
+<header class="nav">
+    <nav>
+        <ul class="nav-list">
+            <li><a href="/html/dashboardDE.html">Startseite</a></li>
+            <li><a href="/html/aboutDE.html">Über uns</a></li>
+            <li><a href="/html/resourcesDE.html">Ressourcen</a></li>
+            <li><a href="/html/statisticsDE.html">Statistiken</a></li>
+            <li id="auth-button"></li>
+        </ul>
+    </nav>
+</header>
+    <div class="language-buttons">
+        <a href="statisticsEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="statisticsNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="statisticsFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="statisticsDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+<main>
+    <section class="statistics">
+        <h2>Statistikübersicht</h2>
+
+        <!-- Filters -->
+        <div class="filters">
+            <label for="filter-regio">Region:</label>
+            <select id="filter-regio">
+                <option value="all">Alle Regionen</option>
+                <option value="Brussel">Brüssel</option>
+                <option value="Vlaams-Brabant">Flämisch-Brabant</option>
+                <option value="Antwerpen">Antwerpen</option>
+            </select>
+            <button id="filter-knop">Filter anwenden</button>
+        </div>
+
+        <!-- Table with statistics -->
+        <h3>Ansicht nach Region</h3>
+        <table id="statistics-table">
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Gesamtfälle</th>
+                    <th>Aktive Fälle</th>
+                    <th>Geheilte Fälle</th>
+                    <th>Sterbefälle</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+
+        <div class="grafiek-container">
+            <canvas id="statisticsChart" width="300" height="200"></canvas>
+            <canvas id="leeftijdChart" width="300" height="200"></canvas>
+            <canvas id="virusChart" width="300" height="200"></canvas>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="/javascript/statistics.js"></script>
+<script type="module" src="/javascript/statistics_language.js"></script>
+<script type="module" src="/javascript/highlight_active_page.js"></script>
+<script type="module" src="/javascript/authCheck.js"></script>
+
+</body>
+<footer>
+    <p>&copy; 2025 Belgischer Pandemie-Monitor. Alle Rechte vorbehalten.</p>
+</footer>
+</html>

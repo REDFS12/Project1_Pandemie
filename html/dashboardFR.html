@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Moniteur de la Pandémie Belge</title>
+    <link rel="stylesheet" href="/css/style_dashboard.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+</head>
+<body class="page-container">
+    <!-- Navigation bar -->
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardFR.html">Accueil</a></li>
+                <li><a href="/html/aboutFR.html">À propos</a></li>
+                <li><a href="/html/resourcesFR.html">Ressources</a></li>
+                <li><a href="/html/statisticsFR.html">Statistiques</a></li>
+                <li id="auth-button"></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="language-buttons">
+        <a href="dashboardEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="dashboardNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="dashboardFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="dashboardDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+    <main class="main-content">
+        <h1>Bienvenue sur le Moniteur de la Pandémie Belge</h1>
+        <p>Consultez les chiffres actualisés sur les infections virales en Belgique et plus encore</p>
+
+        <section class="information">
+            <h2>Cas</h2>
+            <ul class="main-list">
+                <li>Nombre total de cas :<span id="total_cases"></span></li>
+                <li>Cas actifs : <span id="active_cases"></span></li>
+                <li>Cas guéris : <span id="recovered_cases"></span></li>
+                <li>Décès : <span id="death_cases"></span></li>
+            </ul>
+        </section>
+        <hr>
+
+        <section class="info-virus">
+            <h2>À propos des Virus</h2>
+        
+            <div class="covid-home">
+                <h3>Covid (COVID-19)</h3>
+                <p><strong>Nom complet :</strong> Maladie à Coronavirus 2019</p>
+                <p><strong>Agent causal :</strong> SARS-CoV-2 (un coronavirus)</p>
+                <p><strong>Propagation :</strong> Par des gouttelettes dans l'air (toux, éternuements, parole)</p>
+                <p><strong>Symptômes :</strong> Fièvre, toux, fatigue, problèmes respiratoires, perte du goût/odorat</p>
+                <p><strong>Prévention :</strong> Vaccination, lavage des mains, port du masque, aération</p>
+                <p><strong>Gravité :</strong> Peut être légère à sévère, particulièrement dangereux pour les personnes âgées et celles avec des maladies sous-jacentes</p>
+            </div>
+            <hr>
+        
+            <div class="griep-home">
+                <h3>Grippe saisonnière</h3>
+                <p><strong>Nom complet :</strong> Influenza</p>
+                <p><strong>Agent causal :</strong> Virus de la grippe (généralement type A ou B)</p>
+                <p><strong>Propagation :</strong> Par des gouttelettes de salive (toux, éternuements)</p>
+                <p><strong>Symptômes :</strong> Forte fièvre, frissons, douleurs musculaires, fatigue, toux sèche</p>
+                <p><strong>Prévention :</strong> Vaccin annuel contre la grippe, bonne hygiène</p>
+                <p><strong>Gravité :</strong> Généralement bénigne, mais peut entraîner des complications chez les personnes vulnérables</p>
+            </div>
+            <hr>
+        
+            <div class="malaria-home">
+                <h3>Paludisme</h3>
+                <p><strong>Agent causal :</strong> Parasite Plasmodium, transmis par les piqûres de moustiques (moustique Anopheles)</p>
+                <p><strong>Propagation :</strong> Pas de personne à personne, uniquement par les moustiques</p>
+                <p><strong>Symptômes :</strong> Fièvre, frissons, sueurs, maux de tête, nausées</p>
+                <p><strong>Prévention :</strong> Répulsifs anti-moustiques, moustiquaires, antipaludéens</p>
+                <p><strong>Gravité :</strong> Sans traitement, cela peut être fatal, surtout dans les régions tropicales</p>
+            </div>
+            <hr>
+        
+            <p><strong id="details-link">Pour plus de détails sur tous les cas, cliquez sur 
+                <a href="/html/statisticsFR.html">STATISTIQUES</a>.</strong>
+            </p>
+        </section>
+    </main>
+
+    <script type="module" src="/javascript/dashboard.js"></script>
+    <script type="module" src="/javascript/import.js"></script>
+    <script type="module" src="/javascript/dashboard_language.js"></script>
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
+    <script type="module" src="/javascript/authCheck.js"></script>
+
+    <footer>
+        <p>&copy; 2025 Moniteur de la Pandémie Belge. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

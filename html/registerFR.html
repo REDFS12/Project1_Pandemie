@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouveau compte - Moniteur de la Pandémie Belge</title>
+    <link rel="stylesheet" href="/css/style_register.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardFR.html">Accueil</a></li>
+                <li><a href="/html/aboutFR.html">À propos</a></li>
+                <li><a href="/html/resourcesFR.html">Ressources</a></li>
+                <li><a href="/html/statisticsFR.html">Statistiques</a></li>
+                <li><a href="/html/loginFR.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="forgot-container">
+        <h2>Créez votre nouveau compte</h2>
+        <p>Entrez les informations pour votre nouveau compte !</p>
+        <div class="role"> 
+            <label for="role">Sélectionnez le rôle :</label><br>
+            <select id="user-role" class="user-role" required>
+                <option value="dokter">Médecin</option>
+            </select>
+        </div>
+        <form id="register-form">
+            <input type="email" id="email" placeholder="Entrez votre e-mail" required>
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <button type="submit">Créer un compte</button>
+        </form>
+        <div class="link-back">
+            <a href="/html/dashboardFR.html">Retour à la page d'accueil</a>
+            <a href="/html/loginFR.html">Aller à la connexion</a>
+        </div>
+    </div>
+    <script src="/javascript/register.js" type="module"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Moniteur de la Pandémie Belge. Tous droits réservés.</p>
+</footer>
+</html>

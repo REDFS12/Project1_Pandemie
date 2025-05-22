@@ -1,3 +1,5 @@
+/*
+
 const translations = {
     en: {
         overviewReports: "Overview of reports",

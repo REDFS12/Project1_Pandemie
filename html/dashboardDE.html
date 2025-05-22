@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Belgischer Pandemie-Monitor</title>
+    <link rel="stylesheet" href="/css/style_dashboard.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+</head>
+<body class="page-container">
+    <!-- Navigation bar -->
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardDE.html">Startseite</a></li>
+                <li><a href="/html/aboutDE.html">Über uns</a></li>
+                <li><a href="/html/resourcesDE.html">Ressourcen</a></li>
+                <li><a href="/html/statisticsDE.html">Statistiken</a></li>
+                <li id="auth-button"></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="language-buttons">
+        <a href="dashboardEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="dashboardNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="dashboardFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="dashboardDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+    <main class="main-content">
+        <h1>Willkommen beim Belgischen Pandemie-Monitor</h1>
+        <p>Sehen Sie sich die aktuellen Zahlen zu Virusinfektionen in Belgien und mehr an</p>
+
+        <section class="information">
+            <h2>Fälle</h2>
+            <ul class="main-list">
+                <li>Gesamtfälle: <span id="total_cases"></span></li>
+                <li>Aktive Fälle: <span id="active_cases"></span></li>
+                <li>Geheilte Fälle: <span id="recovered_cases"></span></li>
+                <li>Sterbefälle: <span id="death_cases"></span></li>
+            </ul>
+        </section>
+        <hr>
+
+        <section class="info-virus">
+            <h2>Über die Viren</h2>
+        
+            <div class="covid-home">
+                <h3>Covid (COVID-19)</h3>
+                <p><strong>Vollständiger Name:</strong> Coronavirus-Krankheit 2019</p>
+                <p><strong>Erreger:</strong> SARS-CoV-2 (ein Coronavirus)</p>
+                <p><strong>Verbreitung:</strong> Durch Tröpfchen in der Luft (Husten, Niesen, Sprechen)</p>
+                <p><strong>Symptome:</strong> Fieber, Husten, Müdigkeit, Atemprobleme, Verlust von Geschmack/Geruch</p>
+                <p><strong>Prävention:</strong> Impfung, Händewaschen, Tragen einer Maske, Lüften</p>
+                <p><strong>Schweregrad:</strong> Kann mild bis schwer sein, besonders gefährlich für ältere Menschen und Personen mit Vorerkrankungen</p>
+            </div>
+            <hr>
+        
+            <div class="griep-home">
+                <h3>Saisonale Grippe</h3>
+                <p><strong>Vollständiger Name:</strong> Influenza</p>
+                <p><strong>Erreger:</strong> Influenzavirus (meist Typ A oder B)</p>
+                <p><strong>Verbreitung:</strong> Durch Speicheltröpfchen (Husten, Niesen)</p>
+                <p><strong>Symptome:</strong> Hohes Fieber, Schüttelfrost, Muskelschmerzen, Müdigkeit, trockener Husten</p>
+                <p><strong>Prävention:</strong> Jährliche Grippeimpfung, gute Hygiene</p>
+                <p><strong>Schweregrad:</strong> Meist mild, kann aber bei Risikogruppen zu Komplikationen führen</p>
+            </div>
+            <hr>
+        
+            <div class="malaria-home">
+                <h3>Malaria</h3>
+                <p><strong>Erreger:</strong> Plasmodium-Parasit, übertragen durch Mückenstiche (Anopheles-Mücke)</p>
+                <p><strong>Verbreitung:</strong> Nicht von Mensch zu Mensch, nur durch Mücken</p>
+                <p><strong>Symptome:</strong> Fieber, Schüttelfrost, Schwitzen, Kopfschmerzen, Übelkeit</p>
+                <p><strong>Prävention:</strong> Mückenschutzmittel, Moskitonetze, Malariamedikamente</p>
+                <p><strong>Schweregrad:</strong> Ohne Behandlung kann es tödlich sein, besonders in tropischen Regionen</p>
+            </div>
+            <hr>
+        
+            <p><strong id="details-link">Für weitere Details zu allen Fällen klicken Sie auf 
+                <a href="/html/statisticsDE.html">STATISTIKEN</a>.</strong>
+            </p>
+        </section>
+    </main>
+
+    <script type="module" src="/javascript/dashboard.js"></script>
+    <script type="module" src="/javascript/import.js"></script>
+    <script type="module" src="/javascript/dashboard_language.js"></script>
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
+    <script type="module" src="/javascript/authCheck.js"></script>
+
+    <footer>
+        <p>&copy; 2025 Belgischer Pandemie-Monitor. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>

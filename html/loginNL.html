@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inloggen - Belgische Pandemie Monitor</title>
+    <link rel="stylesheet" href="/css/style_login.css">
+</head>
+<body>
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardNL.html">Home</a></li>
+                <li><a href="/html/aboutNL.html">Over</a></li>
+                <li><a href="/html/resourcesNL.html">Bronnen</a></li>
+                <li><a href="/html/statisticsNL.html">Statistieken</a></li>
+                <li><a href="/html/loginNL.html">Inloggen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="language-buttons">
+        <a href="loginEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="loginNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="loginFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="loginDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+
+    <div class="login-container">
+        <h2 class="login-title">Inloggen</h2>
+        
+        <div class="role"> 
+            <label class="title-role" for="role">Selecteer rol:</label><br>
+            <select id="user-role" class="user-role" required>
+                <option value="dokter">Dokter</option>
+            </select>
+        </div>
+        
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="E-mail" required>
+            <input type="password" id="login-password" placeholder="Wachtwoord" required>
+            <button type="submit">Inloggen</button>
+        </form>
+
+        <div class="login-options">
+            <a href="/html/registerNL.html" class="register">Account aanmaken</a>
+            <a href="/html/forgot_passwordNL.html" class="forgot">Wachtwoord vergeten?</a>
+            <a href="/html/dashboardNL.html" class="back-home">Terug naar homepagina</a>
+        </div>
+    </div>
+    <script src="/javascript/login.js" type="module"></script>   
+    <script type="module" src="/javascript/login_language.js"></script> 
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Belgische Pandemie Monitor. Alle rechten voorbehouden.</p>
+</footer>
+</html>

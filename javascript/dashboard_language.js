@@ -1,3 +1,5 @@
+/*
+
 const translations = {
     en: {
         welcome: "Welcome to the Belgian Pandemic Monitor",

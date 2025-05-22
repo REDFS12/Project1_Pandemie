@@ -1,4 +1,4 @@
-// Translations for each language
+/* Translations for each language
 const translations = {
     en: {
         loginTitle: "Login",

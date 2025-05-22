@@ -1,3 +1,4 @@
+/* 
 const translations = {
     en: {
         title: "The Belgian Pandemic Monitor",

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Moniteur de la Pandémie Belge</title>
+    <link rel="stylesheet" href="/css/style_login.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header class="nav">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="/html/dashboardFR.html">Accueil</a></li>
+                <li><a href="/html/aboutFR.html">À propos</a></li>
+                <li><a href="/html/resourcesFR.html">Ressources</a></li>
+                <li><a href="/html/statisticsFR.html">Statistiques</a></li>
+                <li><a href="/html/loginFR.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="language-buttons">
+        <a href="loginEN.html"><button data-lang="en">&#x1f1ec;&#x1f1e7;</button></a>
+        <a href="loginNL.html"><button data-lang="nl">&#127475;&#127473;</button></a>
+        <a href="loginFR.html"><button data-lang="fr">&#x1f1eb;&#x1f1f7;</button></a>
+        <a href="loginDE.html"><button data-lang="de">&#127465;&#127466;</button></a>
+    </div>
+
+    <div class="login-container">
+        <h2 class="login-title">Connexion</h2>
+        <div class="role"> 
+            <label class="title-role" for="role">Sélectionnez le rôle :</label><br>
+            <select id="user-role" class="user-role" required>
+                <option value="dokter">Médecin</option>
+            </select>
+        </div>
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="E-mail" required>
+            <input type="password" id="login-password" placeholder="Mot de passe" required>
+            <button type="submit">Connexion</button>
+        </form>
+        <div class="login-options">
+            <a href="/html/registerFR.html" class="register">Créer un compte</a>
+            <a href="/html/forgot_passwordFR.html" class="forgot">Mot de passe oublié ?</a>
+            <a href="/html/dashboardFR.html" class="back-home">Retour à la page d'accueil</a>
+        </div>
+    </div>
+    <script src="/javascript/login.js" type="module"></script>   
+    <script type="module" src="/javascript/login_language.js"></script> 
+    <script type="module" src="/javascript/highlight_active_page.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Moniteur de la Pandémie Belge. Tous droits réservés.</p>
+</footer>
+</html>
