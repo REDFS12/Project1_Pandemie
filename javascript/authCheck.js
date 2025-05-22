@@ -13,7 +13,7 @@ onAuthStateChanged(auth, (user) => {
       e.preventDefault();
       try {
         await signOut(auth);
-        window.location.href = '/html/login.html'; // redirect na uitloggen
+        window.location.href = '/html/loginEN.html'; // redirect na uitloggen
       } catch (err) {
         console.error("Fout bij uitloggen:", err);
       }
@@ -21,7 +21,7 @@ onAuthStateChanged(auth, (user) => {
 
   } else {
     // Niet ingelogd → Toon "Inloggen"
-    authButton.innerHTML = `<a href="/html/login.html">Sign in</a>`;
+    authButton.innerHTML = `<a href="/html/loginEN.html">Sign in</a>`;
   }
 });
 
