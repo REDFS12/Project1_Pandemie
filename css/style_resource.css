@@ -137,6 +137,19 @@ body {
     text-decoration: underline; /* Optional: Add underline */
 }
 
+#export-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 50%;
+    display: block;
+    margin: 20px auto;
+}
+
 .timestamp {
     margin: 0;
     display: flex;

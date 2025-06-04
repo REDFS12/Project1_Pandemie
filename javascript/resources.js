@@ -71,6 +71,30 @@ async function handleDeathClick(e) {
     }
 }
 
+document.getElementById('export-btn').addEventListener('click', function () {
+    const table = document.getElementById('meldingentabel');
+    let csv = [];
+    for (let row of table.rows) {
+        let rowData = [];
+        for (let cell of row.cells) {
+            // Escape quotes
+            rowData.push('"' + cell.innerText.replace(/"/g, '""') + '"');
+        }
+        csv.push(rowData.join(','));
+    }
+    const csvString = csv.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.setAttribute('hidden', '');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'reports.csv');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+});
+
 // 🔐 Authentication check on page load
 onAuthStateChanged(auth, user => {
     if (user) {
