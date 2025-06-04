@@ -30,7 +30,7 @@ loginForm.addEventListener('submit', async (e) => {
       const userData = docSnap.data();
       if (!userData.approved) {
         alert('Your account is not approved yet. Please wait for admin approval.');
-        await signOut(auth); // <-- Add this line here
+        await signOut(auth);
         return;
       }
 
