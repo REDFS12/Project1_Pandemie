@@ -5,8 +5,14 @@ const authButton = document.getElementById('auth-button');
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // Logged in → Show "Sign out"
-    authButton.innerHTML = `<a href="#" id="logout-link">Sign out</a>`;
+    // Logged in → Show "Sign out" en nieuwe meldingen
+    authButton.innerHTML = 
+                          `<a href="/html/doctor_dashboard.html">Dashboard</a>
+                           <span style="margin-left: 100px;">
+                           <a href="#" id="logout-link">Sign out</a>
+                           </span>`;
+                          
+    
     
     document.getElementById('logout-link').addEventListener('click', async (e) => {
       e.preventDefault();
