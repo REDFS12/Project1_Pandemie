@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard - Belgian Pandemic Monitor</title>
+    <title>Arzt-Dashboard - Belgischer Pandemie-Monitor</title>
     <link rel="stylesheet" href="/css/style_doctor_dashboard.css">
     <!-- Chart.js import -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,12 +14,11 @@
     <header class="nav">
         <nav>
             <ul class="nav-list">
-                <li><a href="/html/dashboardDE.html">Home</a></li>
-                <li><a href="/html/aboutDE.html">About</a></li>
-                <li><a href="/html/resourcesDE.html">Resources</a></li>
-                <li><a href="/html/statisticsDE.html">Statistics</a></li>
+                <li><a href="/html/dashboardDE.html">Startseite</a></li>
+                <li><a href="/html/aboutDE.html">Über uns</a></li>
+                <li><a href="/html/resourcesDE.html">Ressourcen</a></li>
+                <li><a href="/html/statisticsDE.html">Statistiken</a></li>
                 <li id="auth-button"></li>
-
             </ul>
         </nav>
     </header>
@@ -31,52 +30,51 @@
     </div>
 <main>
     <section class="information">
-        <h2>Belangrijke informatie</h2>
+        <h2>Wichtige Informationen</h2>
         <ul class="main-list">
-            <li>Totaal gevallen: <span id="total_cases"></span></li>
-            <li>Actieve gevallen: <span id="aantal_actieve"></span></li>
-            <li>Herstelde gevallen: <span id="aantal_hersteld"></span></li>
-            <li>Sterfgevallen: <span id="aantal_overleden"></span></li>
+            <li>Gesamtfälle: <span id="total_cases"></span></li>
+            <li>Aktive Fälle: <span id="aantal_actieve"></span></li>
+            <li>Genesene Fälle: <span id="aantal_hersteld"></span></li>
+            <li>Todesfälle: <span id="aantal_overleden"></span></li>
         </ul>
     </section>
-
 
 <hr>
 
 <section class="meldingen">
-    <h2>Nieuwe besmetting melden:</h2>
+    <h2>Neue Infektion melden:</h2>
     <form id="besmetting-form">
         <div class="infoPersoon">
-            <label>Regio:
+            <label>Region:
                 <select id="regio">
-                    <option value="Brussel">Brussel</option>
-                    <option value="Vlaams-Brabant">Vlaams-Brabant</option>
+                    <option value="Brussel">Brüssel</option>
+                    <option value="Vlaams-Brabant">Flämisch-Brabant</option>
                     <option value="Antwerpen">Antwerpen</option>
                 </select>
             </label><br>
 
-            <label>Werk Locatie:
+            <label>Arbeitsort:
                 <input type="text" id="werkLocatie" required>
             </label><br>
 
-            <label>Leeftijd:
+            <label>Alter:
                 <input type="number" id="leeftijd" required>
             </label><br>
 
-            <label>Grootte van het gezin:
+            <label>Haushaltsgröße:
                 <input type="number" id="gezinGrootte" required>
             </label><br>
 
-            <label>Geslacht:
+            <label>Geschlecht:
                 <select id="geslacht">
-                    <option value="man">Man</option>
-                    <option value="vrouw">Vrouw</option>
+                    <option value="man">Männlich</option>
+                    <option value="vrouw">Weiblich</option>
                 </select required>
             </label><br>
         </div>
 
         <div class="infoVirus">
-            <label>Type Virus:
+            <label>Virustyp:
                 <select id="virusType" required> 
                     <option value="Covid">Covid</option>
                     <option value="Grippe">Grippe</option>
@@ -84,32 +82,32 @@
                 </select>
             </label><br>
 
-            <label>Datum besmetting:
+            <label>Infektionsdatum:
                 <input type="date" id="datumBesmetting" required>
             </label><br>
 
-            <label>Ingave Datum:
+            <label>Eintragsdatum:
                 <input type="date" id="ingaveDatum" required>
             </label><br>
 
-            <label>Genezing Datum:
+            <label>Genesungsdatum:
                 <input type="date" id="genezingDatum">
             </label><br>
 
-            <label>Status vaccinatie:
+            <label>Impfstatus:
                 <select id="statusVaccinatie" required>
-                    <option value="gevaccineerd">Gevaccineerd</option>
-                    <option value="nietGevaccineerd">Niet gevaccineerd</option>
+                    <option value="gevaccineerd">Geimpft</option>
+                    <option value="nietGevaccineerd">Nicht geimpft</option>
                 </select>
             </label>
         </div> 
 
-        <button class="button" type="submit">Opslaan</button>
+        <button class="button" type="submit">Speichern</button>
     </form>
 </section>
 
 <section class="chartSection">
-    <h2>Besmettingen per Regio:</h2>
+    <h2>Infektionen pro Region:</h2>
     <canvas id="regioChart" style="width: 300px; height: 300px;"></canvas>
 </section>
 
@@ -121,11 +119,8 @@
 <script type="module" src="/javascript/authCheck.js"></script>
 
 <footer>
-    <p>&copy; 2025 Belgian Pandemic Monitor. Alle rechten voorbehouden.</p>
+    <p>&copy; 2025 Belgischer Pandemie-Monitor. Alle Rechte vorbehalten.</p>
 </footer>
 
 </body>
-
-
-
 </html>

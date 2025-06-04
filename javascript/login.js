@@ -34,7 +34,12 @@ loginForm.addEventListener('submit', async (e) => {
       console.log('User role from Firestore:', userRole);
 
       if (userRole === "dokter") {
-        window.location.href = '/html/doctor_dashboardEN.html';
+        const lang = localStorage.getItem('selectedLanguage') || 'en';
+        let dashboardUrl = '/html/doctor_dashboardEN.html';
+        if (lang === 'nl') dashboardUrl = '/html/doctor_dashboardNL.html';
+        else if (lang === 'fr') dashboardUrl = '/html/doctor_dashboardFR.html';
+        else if (lang === 'de') dashboardUrl = '/html/doctor_dashboardDE.html';
+        window.location.href = dashboardUrl;
       } else {
         alert('Unknown role in Firestore.');
       }
@@ -54,4 +59,9 @@ document.querySelectorAll('.language-buttons button').forEach(button => {
     localStorage.setItem('selectedLanguage', lang);
     switchLanguage(lang);
   });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const lang = localStorage.getItem('selectedLanguage') || 'en';
+  switchLanguage(lang); // Make sure switchLanguage is defined on this page
 });
