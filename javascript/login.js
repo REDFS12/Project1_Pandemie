@@ -1,6 +1,5 @@
 import { auth, db } from './firebaseConfig.js';
-import {signInWithEmailAndPassword, setPersistence, browserLocalPersistence
-} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import {signInWithEmailAndPassword, setPersistence, browserLocalPersistence, signOut} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 import { getDoc, doc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 const loginForm = document.getElementById('login-form');
@@ -29,12 +28,13 @@ loginForm.addEventListener('submit', async (e) => {
 
     if (docSnap.exists()) {
       const userData = docSnap.data();
-      const userRole = userData.rol;
-
       if (!userData.approved) {
         alert('Your account is not approved yet. Please wait for admin approval.');
+        await signOut(auth); // <-- Add this line here
         return;
       }
+
+      const userRole = userData.rol;
 
       console.log('User role from Firestore:', userRole);
 
