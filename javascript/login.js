@@ -31,6 +31,11 @@ loginForm.addEventListener('submit', async (e) => {
       const userData = docSnap.data();
       const userRole = userData.rol;
 
+      if (!userData.approved) {
+        alert('Your account is not approved yet. Please wait for admin approval.');
+        return;
+      }
+
       console.log('User role from Firestore:', userRole);
 
       if (userRole === "dokter") {

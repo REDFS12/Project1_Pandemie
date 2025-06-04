@@ -29,7 +29,8 @@ registerForm.addEventListener('submit', async (e) => {
         await setDoc(doc(db, collectionName, user.uid), {
             uid: user.uid,
             email: email,
-            rol: role
+            rol: role,
+            approved: false // User is not approved by default
         });
     
         window.location.href = role === "dokter"
