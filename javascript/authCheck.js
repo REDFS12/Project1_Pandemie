@@ -7,7 +7,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // Logged in → Show "Sign out" en nieuwe meldingen
     authButton.innerHTML = 
-                          `<a href="/html/doctor_dashboard.html">Dashboard</a>
+                          `<a href="/html/doctor_dashboardNL.html">Dashboard</a>
                            <span style="margin-left: 100px;">
                            <a href="#" id="logout-link">Sign out</a>
                            </span>`;
