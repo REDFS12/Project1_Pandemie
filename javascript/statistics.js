@@ -12,10 +12,10 @@ async function getStatisticsData() {
 
     snapshot.forEach(doc => {
         const data = doc.data();
-        const region = data.regio;
-        const isActive = !data.genezingDatum;
-        const isRecovered = !!data.genezingDatum;
-        const isDeath = data.gestorven;
+        const region = data.region;
+        const isActive = !data.recoveryDate;
+        const isRecovered = !!data.recoveryDate;
+        const isDeath = data.gestorven === true;
 
         if (dataPerRegion.hasOwnProperty(region)) {
             dataPerRegion[region].cases++;
@@ -23,8 +23,8 @@ async function getStatisticsData() {
             if (isRecovered) dataPerRegion[region].recovered++;
             if (isDeath) dataPerRegion[region].death++;
 
-            if (data.leeftijd) {
-                dataPerRegion[region].ages.push(data.leeftijd);
+            if (data.age) {
+                dataPerRegion[region].ages.push(data.age);
             }
 
             if (data.virusType) {
@@ -74,21 +74,21 @@ function updateChart(dataPerRegion) {
             labels: labels,
             datasets: [
                 {
-                    label: 'Totale Gevallen',
+                    label: 'Total Cases',
                     data: casesData,
                     backgroundColor: 'blue',
                     borderColor: 'darkblue',
                     borderWidth: 1
                 },
                 {
-                    label: 'Actieve Gevallen',
+                    label: 'Active Cases',
                     data: activeData,
                     backgroundColor: 'red',
                     borderColor: 'darkred',
                     borderWidth: 1
                 },
                 {
-                    label: 'Herstelde Gevallen',
+                    label: 'Recovered Cases',
                     data: recoveredData,
                     backgroundColor: 'lightgreen',
                     borderColor: 'green',
@@ -96,7 +96,7 @@ function updateChart(dataPerRegion) {
                 },
 
                 {
-                    label: 'Sterf Gevallen',
+                    label: 'Deaths',
                     data: deathData,
                     backgroundColor: 'black',
                     borderColor: 'grey',

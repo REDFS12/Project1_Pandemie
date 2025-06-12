@@ -74,21 +74,21 @@ async function drawRegionChart() {
     const snapshot = await getDocs(collection(db, "Variabelen-geinfecteerden"));
     snapshot.forEach(doc => {
         const data = doc.data();
-        const region = data.regio;
+        const region = data.region;
 
         if (regionCount.hasOwnProperty(region)) {
             regionCount[region]++;
         }
 
-        if (!data.genezingDatum || new Date(data.genezingDatum) > new Date()) {
+        if (!data.recoveryDate || new Date(data.recoveryDate) > new Date()) {
             activeCases++;
         }
 
-        if (data.genezingDatum) {
+        if (data.recoveryDate) {
             recoveredCases++;
         }
 
-        if (data.gestorven == true) {
+        if (data.deathCases == true) {
             deathCases++;
         }
     });

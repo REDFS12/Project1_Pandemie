@@ -29,12 +29,12 @@ async function loadReports() {
             cell.appendChild(button);
 
             row.innerHTML = `
-                <td>${data.ingaveDatum}</td>
-                <td>${data.regio}</td>
-                <td>${data.leeftijd}</td>
-                <td>${data.geslacht}</td>
+                <td>${data.entryDate}</td>
+                <td>${data.region}</td>
+                <td>${data.age}</td>
+                <td>${data.gender}</td>
                 <td>${data.virusType}</td>
-                <td>${data.statusVaccinatie}</td>
+                <td>${data.vaccinationStatus}</td>
             `;
             row.appendChild(cell);
             tableBody.appendChild(row);
